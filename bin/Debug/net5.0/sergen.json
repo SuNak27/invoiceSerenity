@@ -1,0 +1,178 @@
+{
+  "RootNamespace": "InvoiceKu",
+  "ServerTypings": {
+    "LocalTexts": true
+  },
+  "Restore": {
+    "Exclude": [
+      "/wwwroot/Scripts/serenity/Serenity.CoreLib*.*"
+    ]
+  },
+  "Connections": [
+    {
+      "Key": "Default",
+      "Tables": [
+        {
+          "Tablename": "bill",
+          "Identifier": "Bill",
+          "Module": "Purchase",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "billdetail",
+          "Identifier": "BillDetail",
+          "Module": "Purchase",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "billpayment",
+          "Identifier": "BillPayment",
+          "Module": "Purchase",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "brand",
+          "Identifier": "Brand",
+          "Module": "Merchandise",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "cashbank",
+          "Identifier": "CashBank",
+          "Module": "Settings",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "category",
+          "Identifier": "Category",
+          "Module": "Merchandise",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "colour",
+          "Identifier": "Colour",
+          "Module": "Merchandise",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "customer",
+          "Identifier": "Customer",
+          "Module": "Sales",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "customercontact",
+          "Identifier": "CustumerContact",
+          "Module": "Sales",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "flavour",
+          "Identifier": "Flavour",
+          "Module": "Merchandise",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "invoice",
+          "Identifier": "Invoice",
+          "Module": "Sales",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "invoicedetail",
+          "Identifier": "InvoiceDetail",
+          "Module": "Sales",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "invoicepayment",
+          "Identifier": "InvoicePayment",
+          "Module": "Sales",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "mycompany",
+          "Identifier": "MyCompany",
+          "Module": "Settings",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "product",
+          "Identifier": "Product",
+          "Module": "Merchandise",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "purchaseorder",
+          "Identifier": "PurchaseOrder",
+          "Module": "Purchase",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "purchaseorderdetail",
+          "Identifier": "PurchaseOrderDetail",
+          "Module": "Purchase",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "purchasetax",
+          "Identifier": "PurchaseTax",
+          "Module": "Settings",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "saleschannel",
+          "Identifier": "SalesChannel",
+          "Module": "Sales",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "salesorder",
+          "Identifier": "SalesOrder",
+          "Module": "Sales",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "salesorderdetail",
+          "Identifier": "SalesOrderDetail",
+          "Module": "Sales",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "salestax",
+          "Identifier": "SalesTax",
+          "Module": "Settings",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "size",
+          "Identifier": "Size",
+          "Module": "Merchandise",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "uom",
+          "Identifier": "Uom",
+          "Module": "Merchandise",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "vendor",
+          "Identifier": "Vendor",
+          "Module": "Purchase",
+          "PermissionKey": "Administration:General"
+        },
+        {
+          "Tablename": "vendorcontact",
+          "Identifier": "VendorContact",
+          "Module": "Purchase",
+          "PermissionKey": "Administration:General"
+        }
+      ]
+    }
+  ],
+  "UpgradeInfo": {
+    "InitialType": "Community",
+    "InitialVersion": "5.2.4.0"
+  }
+}
