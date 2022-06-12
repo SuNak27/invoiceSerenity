@@ -27,6 +27,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Merchandise.Product';
+        export const lookupKey = 'Merchandise.Product';
+
+        export function getLookup(): Q.Lookup<ProductRow> {
+            return Q.getLookup<ProductRow>('Merchandise.Product');
+        }
         export const deletePermission = 'Merchandise:Product';
         export const insertPermission = 'Merchandise:Product';
         export const readPermission = 'Merchandise:Product';

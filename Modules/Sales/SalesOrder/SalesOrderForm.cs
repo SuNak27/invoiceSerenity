@@ -1,4 +1,5 @@
-﻿using Serenity;
+﻿using System.Net.Mime;
+using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using System;
@@ -12,22 +13,39 @@ namespace InvoiceKu.Sales.Forms
     [BasedOnRow(typeof(SalesOrderRow), CheckNames = true)]
     public class SalesOrderForm
     {
+        [Tab("General")]
+        [Category("Sales Order")]
+        [HalfWidth]
         public string Number { get; set; }
-        public string Description { get; set; }
-        public string SalesGroup { get; set; }
+        [HalfWidth]
+        [DefaultValue("now")]
         public DateTime OrderDate { get; set; }
+        [HalfWidth]
+        [TextAreaEditor(Rows = 3)]
+        public string Description { get; set; }
+        [HalfWidth]
+        [DisplayName("Customer")]
         public int CustomerId { get; set; }
+
+        [Category("Channel")]
+        [DisplayName("Sales Channel")]
         public int SalesChannelId { get; set; }
-        public double SubTotal { get; set; }
-        public double Discount { get; set; }
-        public double BeforeTax { get; set; }
-        public double TaxAmount { get; set; }
-        public double Total { get; set; }
-        public double OtherCharge { get; set; }
-        public DateTime InsertDate { get; set; }
-        public int InsertUserId { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateUserId { get; set; }
-        public int TenantId { get; set; }
+
+        [Category("Detail")]
+        [DisplayName("Items")]
+        [SalesOrderDetailEditor]
+        public List<SalesOrderDetailRow> ItemList { get; set; }
+
+        
+        [Category("Currency")]
+        public string CurrencyName { get; set; }
+
+        [Category("Summary")]
+        public Double SubTotal { get; set; }
+        public Double Discount { get; set; }
+        public Double BeforeTax { get; set; }
+        public Double TaxAmount { get; set; }
+        public Double OtherCharge { get; set; }
+        public Double Total { get; set; }
     }
 }

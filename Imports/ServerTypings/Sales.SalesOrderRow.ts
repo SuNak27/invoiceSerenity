@@ -17,7 +17,10 @@
         InsertUserId?: number;
         UpdateDate?: string;
         UpdateUserId?: number;
+        CurrencyName?: string;
         TenantId?: number;
+        TenantName?: string;
+        ItemList?: SalesOrderDetailRow[];
     }
 
     export namespace SalesOrderRow {
@@ -47,7 +50,10 @@
             InsertUserId = "InsertUserId",
             UpdateDate = "UpdateDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            CurrencyName = "CurrencyName",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
+            ItemList = "ItemList"
         }
     }
 }

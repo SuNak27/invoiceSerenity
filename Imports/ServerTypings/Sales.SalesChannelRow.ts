@@ -14,6 +14,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Sales.SalesChannel';
+        export const lookupKey = 'Sales.SalesChannel';
+
+        export function getLookup(): Q.Lookup<SalesChannelRow> {
+            return Q.getLookup<SalesChannelRow>('Sales.SalesChannel');
+        }
         export const deletePermission = 'Sales:SalesChannel';
         export const insertPermission = 'Sales:SalesChannel';
         export const readPermission = 'Sales:SalesChannel';

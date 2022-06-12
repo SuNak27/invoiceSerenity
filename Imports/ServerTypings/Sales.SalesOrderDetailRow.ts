@@ -3,6 +3,7 @@
         Id?: number;
         SalesOrderId?: number;
         ProductId?: number;
+        ProductName?: string;
         Price?: number;
         Qty?: number;
         SubTotal?: number;
@@ -20,6 +21,7 @@
 
     export namespace SalesOrderDetailRow {
         export const idProperty = 'Id';
+        export const nameProperty = 'ProductName';
         export const localTextPrefix = 'Sales.SalesOrderDetail';
         export const deletePermission = 'Sales:SalesOrder';
         export const insertPermission = 'Sales:SalesOrder';
@@ -30,6 +32,7 @@
             Id = "Id",
             SalesOrderId = "SalesOrderId",
             ProductId = "ProductId",
+            ProductName = "ProductName",
             Price = "Price",
             Qty = "Qty",
             SubTotal = "SubTotal",

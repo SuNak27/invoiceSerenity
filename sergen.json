@@ -151,6 +151,12 @@
           "PermissionKey": "Administration:General"
         },
         {
+          "Tablename": "tenant",
+          "Identifier": "Tenant",
+          "Module": "Administration",
+          "PermissionKey": "Administration:General"
+        },
+        {
           "Tablename": "uom",
           "Identifier": "Uom",
           "Module": "Merchandise",

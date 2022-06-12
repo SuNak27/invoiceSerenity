@@ -1,10 +1,12 @@
-﻿using Serenity;
+﻿using System.Linq;
+using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Collections.Generic;
 
 namespace InvoiceKu.Sales
 {
@@ -12,6 +14,7 @@ namespace InvoiceKu.Sales
     [DisplayName("Customer"), InstanceName("Customer")]
     [ReadPermission("Sales:Customer")]
     [ModifyPermission("Sales:Customer")]
+    [LookupScript("Sales.Customer")]
     public sealed class CustomerRow : Row<CustomerRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]

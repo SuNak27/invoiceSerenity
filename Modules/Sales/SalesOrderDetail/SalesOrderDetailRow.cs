@@ -35,6 +35,13 @@ namespace InvoiceKu.Sales
             set => fields.ProductId[this] = value;
         }
 
+        [DisplayName("Product"), Expression("jProduct.[Name]"), MinSelectLevel(SelectLevel.List), NameProperty]
+        public String ProductName
+        {
+            get => fields.ProductName[this];
+            set => fields.ProductName[this] = value;
+        }
+
         [DisplayName("Price"), NotNull]
         public double? Price
         {
@@ -141,6 +148,7 @@ namespace InvoiceKu.Sales
             public Int32Field Id;
             public Int32Field SalesOrderId;
             public Int32Field ProductId;
+            public StringField ProductName;
             public DoubleField Price;
             public DoubleField Qty;
             public DoubleField SubTotal;

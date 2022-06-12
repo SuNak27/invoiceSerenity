@@ -1,10 +1,12 @@
-﻿using Serenity;
+﻿using System.Linq;
+using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Collections.Generic;
 
 namespace InvoiceKu.Sales
 {
@@ -22,6 +24,8 @@ namespace InvoiceKu.Sales
         }
 
         [DisplayName("Number"), Size(200), NotNull, QuickSearch, NameProperty]
+        [Insertable(false), Updatable(false)]
+        [DefaultValue("auto")]
         public string Number
         {
             get => fields.Number[this];
@@ -49,18 +53,27 @@ namespace InvoiceKu.Sales
             set => fields.OrderDate[this] = value;
         }
 
-        [DisplayName("Customer Id"), NotNull]
-        public int? CustomerId
+        [DisplayName("Customer"), NotNull, ForeignKey("[Customer]", "Id"), LeftJoin("jCustomer"), TextualField("CustomerName")]
+        [LookupEditor(typeof(CustomerRow), InplaceAdd = true)]
+        public Int32? CustomerId
         {
             get => fields.CustomerId[this];
             set => fields.CustomerId[this] = value;
         }
 
-        [DisplayName("Sales Channel Id"), NotNull]
+        [DisplayName("Sales Channel"), NotNull, ForeignKey("[SalesChannel]", "Id"), LeftJoin("jSalesChannel"), TextualField("SalesChannelName")]
+        [LookupEditor(typeof(SalesChannelRow), InplaceAdd = true)]
         public int? SalesChannelId
         {
             get => fields.SalesChannelId[this];
             set => fields.SalesChannelId[this] = value;
+        }
+
+        [DisplayName("Items"), MasterDetailRelation(foreignKey: "SalesOrderId"), NotMapped]
+        public List<SalesOrderDetailRow> ItemList
+        {
+            get => fields.ItemList[this];
+            set => fields.ItemList[this] = value;
         }
 
         [DisplayName("Sub Total"), NotNull]
@@ -133,11 +146,31 @@ namespace InvoiceKu.Sales
             set => fields.UpdateUserId[this] = value;
         }
 
-        [DisplayName("Tenant Id"), NotNull]
-        public int? TenantId
+        [DisplayName("Tenant"), ForeignKey("Tenant", "TenantId"), LeftJoin("jTenant")]
+        [Insertable(false), Updatable(false)]
+        public Int32? TenantId
         {
-            get => fields.TenantId[this];
-            set => fields.TenantId[this] = value;
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+
+        [DisplayName("Tenant"), Expression("jTenant.TenantName")]
+        public String TenantName
+        {
+            get { return Fields.TenantName[this]; }
+            set { Fields.TenantName[this] = value; }
+        }
+
+        [DisplayName("Currency"), Size(10), Expression("jTenant.Currency"), Insertable(false), Updatable(false)]
+        public String CurrencyName
+        {
+            get => fields.CurrencyName[this];
+            set => fields.CurrencyName[this] = value;
+        }
+
+        public Int32Field TenantIdField
+        {
+            get { return Fields.TenantId; }
         }
 
         public SalesOrderRow()
@@ -169,7 +202,12 @@ namespace InvoiceKu.Sales
             public Int32Field InsertUserId;
             public DateTimeField UpdateDate;
             public Int32Field UpdateUserId;
+
+            public StringField CurrencyName;
             public Int32Field TenantId;
+            public StringField TenantName;
+
+            public RowListField<SalesOrderDetailRow> ItemList;
         }
     }
 }

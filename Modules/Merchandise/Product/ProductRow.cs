@@ -5,6 +5,7 @@ using Serenity.Data.Mapping;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Collections.Generic;
 
 namespace InvoiceKu.Merchandise
 {
@@ -12,6 +13,7 @@ namespace InvoiceKu.Merchandise
     [DisplayName("Product"), InstanceName("Product")]
     [ReadPermission("Merchandise:Product")]
     [ModifyPermission("Merchandise:Product")]
+    [LookupScript("Merchandise.Product")]
     public sealed class ProductRow : Row<ProductRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]

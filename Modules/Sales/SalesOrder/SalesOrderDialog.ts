@@ -2,6 +2,7 @@
 namespace InvoiceKu.Sales {
 
     @Serenity.Decorators.registerClass()
+    @Serenity.Decorators.panel()
     export class SalesOrderDialog extends Serenity.EntityDialog<SalesOrderRow, any> {
         protected getFormKey() { return SalesOrderForm.formKey; }
         protected getIdProperty() { return SalesOrderRow.idProperty; }

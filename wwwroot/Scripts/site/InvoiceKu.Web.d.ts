@@ -5,6 +5,7 @@
 /// <reference types="jqueryui" />
 /// <reference types="serenity.pro.ui" />
 /// <reference types="serenity.pro.extensions" />
+/// <reference types="serenity.extensions" />
 declare namespace InvoiceKu.Administration {
     class LanguageColumns {
         static columnsKey: string;
@@ -170,6 +171,177 @@ declare namespace InvoiceKu.Administration {
             Delete = "Administration/Role/Delete",
             Retrieve = "Administration/Role/Retrieve",
             List = "Administration/Role/List"
+        }
+    }
+}
+declare namespace InvoiceKu.Administration {
+    class TenantColumns {
+        static columnsKey: string;
+    }
+}
+declare namespace InvoiceKu.Administration {
+    interface TenantForm {
+        TenantName: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        Currency: Serenity.StringEditor;
+        Street: Serenity.StringEditor;
+        City: Serenity.StringEditor;
+        State: Serenity.StringEditor;
+        ZipCode: Serenity.StringEditor;
+        Phone: Serenity.StringEditor;
+        Email: Serenity.StringEditor;
+        ProductNumberPrefix: Serenity.StringEditor;
+        ProductNumberUseDate: Serenity.IntegerEditor;
+        ProductNumberLength: Serenity.IntegerEditor;
+        CustomerNumberPrefix: Serenity.StringEditor;
+        CustomerNumberUseDate: Serenity.IntegerEditor;
+        CustomerNumberLength: Serenity.IntegerEditor;
+        SalesNumberPrefix: Serenity.StringEditor;
+        SalesNumberUseDate: Serenity.IntegerEditor;
+        SalesNumberLength: Serenity.IntegerEditor;
+        InvoiceNumberPrefix: Serenity.StringEditor;
+        InvoiceNumberUseDate: Serenity.IntegerEditor;
+        InvoiceNumberLength: Serenity.IntegerEditor;
+        InvoicePaymentNumberPrefix: Serenity.StringEditor;
+        InvoicePaymentNumberUseDate: Serenity.IntegerEditor;
+        InvoicePaymentNumberLength: Serenity.IntegerEditor;
+        VendorNumberPrefix: Serenity.StringEditor;
+        VendorNumberUseDate: Serenity.IntegerEditor;
+        VendorNumberLength: Serenity.IntegerEditor;
+        PurchaseNumberPrefix: Serenity.StringEditor;
+        PurchaseNumberUseDate: Serenity.IntegerEditor;
+        PurchaseNumberLength: Serenity.IntegerEditor;
+        BillNumberPrefix: Serenity.StringEditor;
+        BillNumberUseDate: Serenity.IntegerEditor;
+        BillNumberLength: Serenity.IntegerEditor;
+        BillPaymentNumberPrefix: Serenity.StringEditor;
+        BillPaymentNumberUseDate: Serenity.IntegerEditor;
+        BillPaymentNumberLength: Serenity.IntegerEditor;
+        MaximumUser: Serenity.IntegerEditor;
+        InsertDate: Serenity.DateEditor;
+        InsertUserId: Serenity.IntegerEditor;
+        UpdateDate: Serenity.DateEditor;
+        UpdateUserId: Serenity.IntegerEditor;
+    }
+    class TenantForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace InvoiceKu.Administration {
+    interface TenantRow {
+        TenantId?: number;
+        TenantName?: string;
+        Description?: string;
+        Currency?: string;
+        Street?: string;
+        City?: string;
+        State?: string;
+        ZipCode?: string;
+        Phone?: string;
+        Email?: string;
+        ProductNumberPrefix?: string;
+        ProductNumberUseDate?: number;
+        ProductNumberLength?: number;
+        CustomerNumberPrefix?: string;
+        CustomerNumberUseDate?: number;
+        CustomerNumberLength?: number;
+        SalesNumberPrefix?: string;
+        SalesNumberUseDate?: number;
+        SalesNumberLength?: number;
+        InvoiceNumberPrefix?: string;
+        InvoiceNumberUseDate?: number;
+        InvoiceNumberLength?: number;
+        InvoicePaymentNumberPrefix?: string;
+        InvoicePaymentNumberUseDate?: number;
+        InvoicePaymentNumberLength?: number;
+        VendorNumberPrefix?: string;
+        VendorNumberUseDate?: number;
+        VendorNumberLength?: number;
+        PurchaseNumberPrefix?: string;
+        PurchaseNumberUseDate?: number;
+        PurchaseNumberLength?: number;
+        BillNumberPrefix?: string;
+        BillNumberUseDate?: number;
+        BillNumberLength?: number;
+        BillPaymentNumberPrefix?: string;
+        BillPaymentNumberUseDate?: number;
+        BillPaymentNumberLength?: number;
+        MaximumUser?: number;
+        InsertDate?: string;
+        InsertUserId?: number;
+        UpdateDate?: string;
+        UpdateUserId?: number;
+    }
+    namespace TenantRow {
+        const idProperty = "TenantId";
+        const nameProperty = "TenantName";
+        const localTextPrefix = "Administration.Tenant";
+        const deletePermission = "Administration:General";
+        const insertPermission = "Administration:General";
+        const readPermission = "Administration:General";
+        const updatePermission = "Administration:General";
+        const enum Fields {
+            TenantId = "TenantId",
+            TenantName = "TenantName",
+            Description = "Description",
+            Currency = "Currency",
+            Street = "Street",
+            City = "City",
+            State = "State",
+            ZipCode = "ZipCode",
+            Phone = "Phone",
+            Email = "Email",
+            ProductNumberPrefix = "ProductNumberPrefix",
+            ProductNumberUseDate = "ProductNumberUseDate",
+            ProductNumberLength = "ProductNumberLength",
+            CustomerNumberPrefix = "CustomerNumberPrefix",
+            CustomerNumberUseDate = "CustomerNumberUseDate",
+            CustomerNumberLength = "CustomerNumberLength",
+            SalesNumberPrefix = "SalesNumberPrefix",
+            SalesNumberUseDate = "SalesNumberUseDate",
+            SalesNumberLength = "SalesNumberLength",
+            InvoiceNumberPrefix = "InvoiceNumberPrefix",
+            InvoiceNumberUseDate = "InvoiceNumberUseDate",
+            InvoiceNumberLength = "InvoiceNumberLength",
+            InvoicePaymentNumberPrefix = "InvoicePaymentNumberPrefix",
+            InvoicePaymentNumberUseDate = "InvoicePaymentNumberUseDate",
+            InvoicePaymentNumberLength = "InvoicePaymentNumberLength",
+            VendorNumberPrefix = "VendorNumberPrefix",
+            VendorNumberUseDate = "VendorNumberUseDate",
+            VendorNumberLength = "VendorNumberLength",
+            PurchaseNumberPrefix = "PurchaseNumberPrefix",
+            PurchaseNumberUseDate = "PurchaseNumberUseDate",
+            PurchaseNumberLength = "PurchaseNumberLength",
+            BillNumberPrefix = "BillNumberPrefix",
+            BillNumberUseDate = "BillNumberUseDate",
+            BillNumberLength = "BillNumberLength",
+            BillPaymentNumberPrefix = "BillPaymentNumberPrefix",
+            BillPaymentNumberUseDate = "BillPaymentNumberUseDate",
+            BillPaymentNumberLength = "BillPaymentNumberLength",
+            MaximumUser = "MaximumUser",
+            InsertDate = "InsertDate",
+            InsertUserId = "InsertUserId",
+            UpdateDate = "UpdateDate",
+            UpdateUserId = "UpdateUserId"
+        }
+    }
+}
+declare namespace InvoiceKu.Administration {
+    namespace TenantService {
+        const baseUrl = "Administration/Tenant";
+        function Create(request: Serenity.SaveRequest<TenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "Administration/Tenant/Create",
+            Update = "Administration/Tenant/Update",
+            Delete = "Administration/Tenant/Delete",
+            Retrieve = "Administration/Tenant/Retrieve",
+            List = "Administration/Tenant/List"
         }
     }
 }
@@ -831,6 +1003,8 @@ declare namespace InvoiceKu.Merchandise {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Merchandise.Product";
+        const lookupKey = "Merchandise.Product";
+        function getLookup(): Q.Lookup<ProductRow>;
         const deletePermission = "Merchandise:Product";
         const insertPermission = "Merchandise:Product";
         const readPermission = "Merchandise:Product";
@@ -1706,6 +1880,8 @@ declare namespace InvoiceKu.Sales {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Sales.Customer";
+        const lookupKey = "Sales.Customer";
+        function getLookup(): Q.Lookup<CustomerRow>;
         const deletePermission = "Sales:Customer";
         const insertPermission = "Sales:Customer";
         const readPermission = "Sales:Customer";
@@ -2146,6 +2322,8 @@ declare namespace InvoiceKu.Sales {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Sales.SalesChannel";
+        const lookupKey = "Sales.SalesChannel";
+        function getLookup(): Q.Lookup<SalesChannelRow>;
         const deletePermission = "Sales:SalesChannel";
         const insertPermission = "Sales:SalesChannel";
         const readPermission = "Sales:SalesChannel";
@@ -2218,6 +2396,7 @@ declare namespace InvoiceKu.Sales {
         Id?: number;
         SalesOrderId?: number;
         ProductId?: number;
+        ProductName?: string;
         Price?: number;
         Qty?: number;
         SubTotal?: number;
@@ -2234,6 +2413,7 @@ declare namespace InvoiceKu.Sales {
     }
     namespace SalesOrderDetailRow {
         const idProperty = "Id";
+        const nameProperty = "ProductName";
         const localTextPrefix = "Sales.SalesOrderDetail";
         const deletePermission = "Sales:SalesOrder";
         const insertPermission = "Sales:SalesOrder";
@@ -2243,6 +2423,7 @@ declare namespace InvoiceKu.Sales {
             Id = "Id",
             SalesOrderId = "SalesOrderId",
             ProductId = "ProductId",
+            ProductName = "ProductName",
             Price = "Price",
             Qty = "Qty",
             SubTotal = "SubTotal",
@@ -2279,22 +2460,18 @@ declare namespace InvoiceKu.Sales {
 declare namespace InvoiceKu.Sales {
     interface SalesOrderForm {
         Number: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        SalesGroup: Serenity.StringEditor;
         OrderDate: Serenity.DateEditor;
-        CustomerId: Serenity.IntegerEditor;
-        SalesChannelId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
+        CustomerId: Serenity.LookupEditor;
+        SalesChannelId: Serenity.LookupEditor;
+        ItemList: SalesOrderDetailEditor;
+        CurrencyName: Serenity.StringEditor;
         SubTotal: Serenity.DecimalEditor;
         Discount: Serenity.DecimalEditor;
         BeforeTax: Serenity.DecimalEditor;
         TaxAmount: Serenity.DecimalEditor;
-        Total: Serenity.DecimalEditor;
         OtherCharge: Serenity.DecimalEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Total: Serenity.DecimalEditor;
     }
     class SalesOrderForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -2321,7 +2498,10 @@ declare namespace InvoiceKu.Sales {
         InsertUserId?: number;
         UpdateDate?: string;
         UpdateUserId?: number;
+        CurrencyName?: string;
         TenantId?: number;
+        TenantName?: string;
+        ItemList?: SalesOrderDetailRow[];
     }
     namespace SalesOrderRow {
         const idProperty = "Id";
@@ -2349,7 +2529,10 @@ declare namespace InvoiceKu.Sales {
             InsertUserId = "InsertUserId",
             UpdateDate = "UpdateDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            CurrencyName = "CurrencyName",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
+            ItemList = "ItemList"
         }
     }
 }
@@ -2829,6 +3012,30 @@ declare namespace InvoiceKu.Administration {
     interface RolePermissionDialogOptions {
         roleID?: number;
         title?: string;
+    }
+}
+declare namespace InvoiceKu.Administration {
+    class TenantDialog extends Serenity.EntityDialog<TenantRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected getDeletePermission(): string;
+        protected getInsertPermission(): string;
+        protected getUpdatePermission(): string;
+        protected form: TenantForm;
+    }
+}
+declare namespace InvoiceKu.Administration {
+    class TenantGrid extends Serenity.EntityGrid<TenantRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TenantDialog;
+        protected getIdProperty(): string;
+        protected getInsertPermission(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
     }
 }
 declare namespace InvoiceKu.Administration {
@@ -3517,6 +3724,15 @@ declare namespace InvoiceKu.Sales {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: SalesOrderDetailForm;
+    }
+}
+declare namespace InvoiceKu.Sales {
+    class SalesOrderDetailEditor extends Serenity.Extensions.GridEditorBase<SalesOrderDetailRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof SalesOrderDetailDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        protected validateEntity(row: SalesOrderDetailRow, id: number): boolean;
     }
 }
 declare namespace InvoiceKu.Sales {

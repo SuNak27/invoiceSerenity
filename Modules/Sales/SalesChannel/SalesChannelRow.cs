@@ -1,4 +1,5 @@
-﻿using Serenity;
+﻿using System.Linq;
+using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -12,6 +13,7 @@ namespace InvoiceKu.Sales
     [DisplayName("Sales Channel"), InstanceName("Sales Channel")]
     [ReadPermission("Sales:SalesChannel")]
     [ModifyPermission("Sales:SalesChannel")]
+    [LookupScript("Sales.SalesChannel")]
     public sealed class SalesChannelRow : Row<SalesChannelRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
