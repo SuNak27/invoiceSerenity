@@ -1,21 +1,25 @@
 ﻿namespace InvoiceKu.Sales {
     export interface InvoiceForm {
         Number: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        SalesGroup: Serenity.StringEditor;
         InvoiceDate: Serenity.DateEditor;
+        Description: Serenity.TextAreaEditor;
         SalesOrderId: Serenity.LookupEditor;
+        ItemList: InvoiceDetailEditor;
+        CurrencyName: Serenity.StringEditor;
         SubTotal: Serenity.DecimalEditor;
         Discount: Serenity.DecimalEditor;
         BeforeTax: Serenity.DecimalEditor;
         TaxAmount: Serenity.DecimalEditor;
-        Total: Serenity.DecimalEditor;
         OtherCharge: Serenity.DecimalEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Total: Serenity.DecimalEditor;
+        CustomerName: Serenity.StringEditor;
+        CustomerStreet: Serenity.StringEditor;
+        CustomerCity: Serenity.StringEditor;
+        CustomerState: Serenity.StringEditor;
+        CustomerZipCode: Serenity.StringEditor;
+        CustomerPhone: Serenity.StringEditor;
+        CustomerEmail: Serenity.StringEditor;
+        InvoicePaymentList: InvoicePaymentEditor;
     }
 
     export class InvoiceForm extends Serenity.PrefixedContext {
@@ -31,27 +35,33 @@
                 var s = Serenity;
                 var w0 = s.StringEditor;
                 var w1 = s.DateEditor;
-                var w2 = s.LookupEditor;
-                var w3 = s.DecimalEditor;
-                var w4 = s.IntegerEditor;
+                var w2 = s.TextAreaEditor;
+                var w3 = s.LookupEditor;
+                var w4 = InvoiceDetailEditor;
+                var w5 = s.DecimalEditor;
+                var w6 = InvoicePaymentEditor;
 
                 Q.initFormType(InvoiceForm, [
                     'Number', w0,
-                    'Description', w0,
-                    'SalesGroup', w0,
                     'InvoiceDate', w1,
-                    'SalesOrderId', w2,
-                    'SubTotal', w3,
-                    'Discount', w3,
-                    'BeforeTax', w3,
-                    'TaxAmount', w3,
-                    'Total', w3,
-                    'OtherCharge', w3,
-                    'InsertDate', w1,
-                    'InsertUserId', w4,
-                    'UpdateDate', w1,
-                    'UpdateUserId', w4,
-                    'TenantId', w4
+                    'Description', w2,
+                    'SalesOrderId', w3,
+                    'ItemList', w4,
+                    'CurrencyName', w0,
+                    'SubTotal', w5,
+                    'Discount', w5,
+                    'BeforeTax', w5,
+                    'TaxAmount', w5,
+                    'OtherCharge', w5,
+                    'Total', w5,
+                    'CustomerName', w0,
+                    'CustomerStreet', w0,
+                    'CustomerCity', w0,
+                    'CustomerState', w0,
+                    'CustomerZipCode', w0,
+                    'CustomerPhone', w0,
+                    'CustomerEmail', w0,
+                    'InvoicePaymentList', w6
                 ]);
             }
         }

@@ -1,4 +1,5 @@
-﻿using Serenity;
+﻿using InvoiceKu.Administration.Entities;
+using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -8,276 +9,283 @@ using System.IO;
 
 namespace InvoiceKu.Settings
 {
-    [ConnectionKey("Default"), Module("Settings"), TableName("mycompany")]
+    [ConnectionKey("Default"), Module("Settings"), TableName("[Tenant]")]
     [DisplayName("My Company"), InstanceName("My Company")]
     [ReadPermission("Settings:MyCompany")]
     [ModifyPermission("Settings:MyCompany")]
-    public sealed class MyCompanyRow : Row<MyCompanyRow.RowFields>, IIdRow, INameRow
+    public sealed class MyCompanyRow : LoggingRow<MyCompanyRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
-        [DisplayName("Tenant Id"), Identity, IdProperty]
-        public int? TenantId
+        [DisplayName("Company Id"), Identity, IdProperty]
+        public Int32? TenantId
         {
             get => fields.TenantId[this];
             set => fields.TenantId[this] = value;
         }
 
-        [DisplayName("Tenant Name"), Size(50), QuickSearch, NameProperty]
-        public string TenantName
+        [DisplayName("Company Name"), Size(200), NotNull, QuickSearch, NameProperty]
+        public String TenantName
         {
             get => fields.TenantName[this];
             set => fields.TenantName[this] = value;
         }
 
-        [DisplayName("Description"), Size(50), NotNull]
-        public string Description
+        [DisplayName("Description"), Size(1000)]
+        public String Description
         {
             get => fields.Description[this];
             set => fields.Description[this] = value;
         }
 
-        [DisplayName("Currency"), Size(50), NotNull]
-        public string Currency
+        [DisplayName("Currency"), Size(5), NotNull]
+        public String Currency
         {
             get => fields.Currency[this];
             set => fields.Currency[this] = value;
         }
 
-        [DisplayName("Street"), Size(100), NotNull]
-        public string Street
+        [DisplayName("Street"), Size(200)]
+        public String Street
         {
             get => fields.Street[this];
             set => fields.Street[this] = value;
         }
 
-        [DisplayName("City"), Size(100), NotNull]
-        public string City
+        [DisplayName("City"), Size(200)]
+        public String City
         {
             get => fields.City[this];
             set => fields.City[this] = value;
         }
 
-        [DisplayName("State"), Size(100), NotNull]
-        public string State
+        [DisplayName("State"), Size(200)]
+        public String State
         {
             get => fields.State[this];
             set => fields.State[this] = value;
         }
 
-        [DisplayName("Zip Code"), Size(50), NotNull]
-        public string ZipCode
+        [DisplayName("Zip Code"), Size(50)]
+        public String ZipCode
         {
             get => fields.ZipCode[this];
             set => fields.ZipCode[this] = value;
         }
 
-        [DisplayName("Phone"), Size(50), NotNull]
-        public string Phone
+        [DisplayName("Phone"), Size(50)]
+        public String Phone
         {
             get => fields.Phone[this];
             set => fields.Phone[this] = value;
         }
 
-        [DisplayName("Email"), Size(50), NotNull]
-        public string Email
+        [DisplayName("Email"), Size(200)]
+        public String Email
         {
             get => fields.Email[this];
             set => fields.Email[this] = value;
         }
 
-        [DisplayName("Maximum User"), NotNull]
-        public int? MaximumUser
+        [DisplayName("User Max"), NotNull, Updatable(false)]
+        public Int32? MaximumUser
         {
             get => fields.MaximumUser[this];
             set => fields.MaximumUser[this] = value;
         }
 
-        [DisplayName("Product Number Prefix"), Size(50)]
-        public string ProductNumberPrefix
+
+
+        [DisplayName("Product Prefix"), Size(5), DefaultValue("ART")]
+        public String ProductNumberPrefix
         {
             get => fields.ProductNumberPrefix[this];
             set => fields.ProductNumberPrefix[this] = value;
         }
 
-        [DisplayName("Product Number Use Date"), Size(50)]
-        public string ProductNumberUseDate
+        [DisplayName("Product Use Date"), DefaultValue(false)]
+        public Boolean? ProductNumberUseDate
         {
             get => fields.ProductNumberUseDate[this];
             set => fields.ProductNumberUseDate[this] = value;
         }
 
-        [DisplayName("Product Number Length")]
-        public int? ProductNumberLength
+        [DisplayName("Product Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? ProductNumberLength
         {
             get => fields.ProductNumberLength[this];
             set => fields.ProductNumberLength[this] = value;
         }
 
-        [DisplayName("Customer Number Prefix"), Size(50)]
-        public string CustomerNumberPrefix
+        [DisplayName("Customer Prefix"), Size(5), DefaultValue("CST")]
+        public String CustomerNumberPrefix
         {
             get => fields.CustomerNumberPrefix[this];
             set => fields.CustomerNumberPrefix[this] = value;
         }
 
-        [DisplayName("Customer Number Use Date"), Size(50)]
-        public string CustomerNumberUseDate
+        [DisplayName("Customer Use Date"), DefaultValue(true)]
+        public Boolean? CustomerNumberUseDate
         {
             get => fields.CustomerNumberUseDate[this];
             set => fields.CustomerNumberUseDate[this] = value;
         }
 
-        [DisplayName("Customer Number Length")]
-        public int? CustomerNumberLength
+        [DisplayName("Customer Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? CustomerNumberLength
         {
             get => fields.CustomerNumberLength[this];
             set => fields.CustomerNumberLength[this] = value;
         }
 
-        [DisplayName("Sales Number Prefix"), Size(50)]
-        public string SalesNumberPrefix
+        [DisplayName("Sales Prefix"), Size(5), DefaultValue("SO")]
+        public String SalesNumberPrefix
         {
             get => fields.SalesNumberPrefix[this];
             set => fields.SalesNumberPrefix[this] = value;
         }
 
-        [DisplayName("Sales Number Use Date"), Size(50)]
-        public string SalesNumberUseDate
+        [DisplayName("Sales Use Date"), DefaultValue(true)]
+        public Boolean? SalesNumberUseDate
         {
             get => fields.SalesNumberUseDate[this];
             set => fields.SalesNumberUseDate[this] = value;
         }
 
-        [DisplayName("Sales Number Length")]
-        public int? SalesNumberLength
+        [DisplayName("Sales Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? SalesNumberLength
         {
             get => fields.SalesNumberLength[this];
             set => fields.SalesNumberLength[this] = value;
         }
 
-        [DisplayName("Invoice Number Prefix"), Size(50)]
-        public string InvoiceNumberPrefix
+        [DisplayName("Invoice Prefix"), Size(5), DefaultValue("INV")]
+        public String InvoiceNumberPrefix
         {
             get => fields.InvoiceNumberPrefix[this];
             set => fields.InvoiceNumberPrefix[this] = value;
         }
 
-        [DisplayName("Invoice Number Use Date"), Size(50)]
-        public string InvoiceNumberUseDate
+        [DisplayName("Invoice Use Date"), DefaultValue(true)]
+        public Boolean? InvoiceNumberUseDate
         {
             get => fields.InvoiceNumberUseDate[this];
             set => fields.InvoiceNumberUseDate[this] = value;
         }
 
-        [DisplayName("Invoice Number Length")]
-        public int? InvoiceNumberLength
+        [DisplayName("Invoice Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? InvoiceNumberLength
         {
             get => fields.InvoiceNumberLength[this];
             set => fields.InvoiceNumberLength[this] = value;
         }
 
-        [DisplayName("Invoice Payment Number Prefix"), Size(50)]
-        public string InvoicePaymentNumberPrefix
+        [DisplayName("Invoice Payment Prefix"), Size(5), DefaultValue("IVPY")]
+        public String InvoicePaymentNumberPrefix
         {
             get => fields.InvoicePaymentNumberPrefix[this];
             set => fields.InvoicePaymentNumberPrefix[this] = value;
         }
 
-        [DisplayName("Invoice Payment Number Use Date"), Size(50)]
-        public string InvoicePaymentNumberUseDate
+        [DisplayName("Invoice Payment Use Date"), DefaultValue(true)]
+        public Boolean? InvoicePaymentNumberUseDate
         {
             get => fields.InvoicePaymentNumberUseDate[this];
             set => fields.InvoicePaymentNumberUseDate[this] = value;
         }
 
-        [DisplayName("Invoice Payment Number Length")]
-        public int? InvoicePaymentNumberLength
+        [DisplayName("Invoice Payment Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? InvoicePaymentNumberLength
         {
             get => fields.InvoicePaymentNumberLength[this];
             set => fields.InvoicePaymentNumberLength[this] = value;
         }
 
-        [DisplayName("Vendor Number Prefix"), Size(50)]
-        public string VendorNumberPrefix
+        [DisplayName("Vendor Prefix"), Size(5), DefaultValue("VND")]
+        public String VendorNumberPrefix
         {
             get => fields.VendorNumberPrefix[this];
             set => fields.VendorNumberPrefix[this] = value;
         }
 
-        [DisplayName("Vendor Number Use Date"), Size(50)]
-        public string VendorNumberUseDate
+        [DisplayName("Vendor Use Date"), DefaultValue(true)]
+        public Boolean? VendorNumberUseDate
         {
             get => fields.VendorNumberUseDate[this];
             set => fields.VendorNumberUseDate[this] = value;
         }
 
-        [DisplayName("Vendor Number Length"), Size(50)]
-        public string VendorNumberLength
+        [DisplayName("Vendor Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? VendorNumberLength
         {
             get => fields.VendorNumberLength[this];
             set => fields.VendorNumberLength[this] = value;
         }
 
-        [DisplayName("Purchase Number Prefix"), Size(50)]
-        public string PurchaseNumberPrefix
+        [DisplayName("Purchase Prefix"), Size(5), DefaultValue("PO")]
+        public String PurchaseNumberPrefix
         {
             get => fields.PurchaseNumberPrefix[this];
             set => fields.PurchaseNumberPrefix[this] = value;
         }
 
-        [DisplayName("Purchase Number Use Date"), Size(50)]
-        public string PurchaseNumberUseDate
+        [DisplayName("Purchase Use Date"), DefaultValue(true)]
+        public Boolean? PurchaseNumberUseDate
         {
             get => fields.PurchaseNumberUseDate[this];
             set => fields.PurchaseNumberUseDate[this] = value;
         }
 
-        [DisplayName("Purchase Number Length")]
-        public int? PurchaseNumberLength
+        [DisplayName("Purchase Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? PurchaseNumberLength
         {
             get => fields.PurchaseNumberLength[this];
             set => fields.PurchaseNumberLength[this] = value;
         }
 
-        [DisplayName("Bill Number Prefix"), Size(50)]
-        public string BillNumberPrefix
+        [DisplayName("Bill Prefix"), Size(5), DefaultValue("BLL")]
+        public String BillNumberPrefix
         {
             get => fields.BillNumberPrefix[this];
             set => fields.BillNumberPrefix[this] = value;
         }
 
-        [DisplayName("Bill Number Use Date"), Size(50)]
-        public string BillNumberUseDate
+        [DisplayName("Bill Use Date"), DefaultValue(true)]
+        public Boolean? BillNumberUseDate
         {
             get => fields.BillNumberUseDate[this];
             set => fields.BillNumberUseDate[this] = value;
         }
 
-        [DisplayName("Bill Number Length")]
-        public int? BillNumberLength
+        [DisplayName("Bill Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? BillNumberLength
         {
             get => fields.BillNumberLength[this];
             set => fields.BillNumberLength[this] = value;
         }
 
-        [DisplayName("Bill Payment Number Prefix"), Size(50)]
-        public string BillPaymentNumberPrefix
+        [DisplayName("Bill Payment Prefix"), Size(5), DefaultValue("BLPY")]
+        public String BillPaymentNumberPrefix
         {
             get => fields.BillPaymentNumberPrefix[this];
             set => fields.BillPaymentNumberPrefix[this] = value;
         }
 
-        [DisplayName("Bill Payment Number Use Date"), Size(50)]
-        public string BillPaymentNumberUseDate
+        [DisplayName("Bill Payment Use Date"), DefaultValue(true)]
+        public Boolean? BillPaymentNumberUseDate
         {
             get => fields.BillPaymentNumberUseDate[this];
             set => fields.BillPaymentNumberUseDate[this] = value;
         }
 
-        [DisplayName("Bill Payment Number Length")]
-        public int? BillPaymentNumberLength
+        [DisplayName("Bill Payment Length"), DefaultValue(4), NotNull, IntegerEditor(MinValue = 2, MaxValue = 50)]
+        public Int16? BillPaymentNumberLength
         {
             get => fields.BillPaymentNumberLength[this];
             set => fields.BillPaymentNumberLength[this] = value;
+        }
+
+        public Int32Field TenantIdField
+        {
+            get { return Fields.TenantId; }
         }
 
         public MyCompanyRow()
@@ -290,7 +298,7 @@ namespace InvoiceKu.Settings
         {
         }
 
-        public class RowFields : RowFieldsBase
+        public class RowFields : LoggingRowFields
         {
             public Int32Field TenantId;
             public StringField TenantName;
@@ -303,33 +311,34 @@ namespace InvoiceKu.Settings
             public StringField Phone;
             public StringField Email;
             public Int32Field MaximumUser;
+
             public StringField ProductNumberPrefix;
-            public StringField ProductNumberUseDate;
-            public Int32Field ProductNumberLength;
+            public BooleanField ProductNumberUseDate;
+            public Int16Field ProductNumberLength;
             public StringField CustomerNumberPrefix;
-            public StringField CustomerNumberUseDate;
-            public Int32Field CustomerNumberLength;
+            public BooleanField CustomerNumberUseDate;
+            public Int16Field CustomerNumberLength;
             public StringField SalesNumberPrefix;
-            public StringField SalesNumberUseDate;
-            public Int32Field SalesNumberLength;
+            public BooleanField SalesNumberUseDate;
+            public Int16Field SalesNumberLength;
             public StringField InvoiceNumberPrefix;
-            public StringField InvoiceNumberUseDate;
-            public Int32Field InvoiceNumberLength;
+            public BooleanField InvoiceNumberUseDate;
+            public Int16Field InvoiceNumberLength;
             public StringField InvoicePaymentNumberPrefix;
-            public StringField InvoicePaymentNumberUseDate;
-            public Int32Field InvoicePaymentNumberLength;
+            public BooleanField InvoicePaymentNumberUseDate;
+            public Int16Field InvoicePaymentNumberLength;
             public StringField VendorNumberPrefix;
-            public StringField VendorNumberUseDate;
-            public StringField VendorNumberLength;
+            public BooleanField VendorNumberUseDate;
+            public Int16Field VendorNumberLength;
             public StringField PurchaseNumberPrefix;
-            public StringField PurchaseNumberUseDate;
-            public Int32Field PurchaseNumberLength;
+            public BooleanField PurchaseNumberUseDate;
+            public Int16Field PurchaseNumberLength;
             public StringField BillNumberPrefix;
-            public StringField BillNumberUseDate;
-            public Int32Field BillNumberLength;
+            public BooleanField BillNumberUseDate;
+            public Int16Field BillNumberLength;
             public StringField BillPaymentNumberPrefix;
-            public StringField BillPaymentNumberUseDate;
-            public Int32Field BillPaymentNumberLength;
+            public BooleanField BillPaymentNumberUseDate;
+            public Int16Field BillPaymentNumberLength;
         }
     }
 }

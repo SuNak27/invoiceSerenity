@@ -10,17 +10,23 @@
         ZipCode?: string;
         Phone?: string;
         Email?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace VendorContactRow {
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Purchase.VendorContact';
+        export const lookupKey = 'Purchase.VendorContact';
+
+        export function getLookup(): Q.Lookup<VendorContactRow> {
+            return Q.getLookup<VendorContactRow>('Purchase.VendorContact');
+        }
         export const deletePermission = 'Purchase:Vendor';
         export const insertPermission = 'Purchase:Vendor';
         export const readPermission = 'Purchase:Vendor';
@@ -37,11 +43,12 @@
             ZipCode = "ZipCode",
             Phone = "Phone",
             Email = "Email",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }

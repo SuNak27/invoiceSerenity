@@ -30,7 +30,7 @@ namespace InvoiceKu.Sales
             set => fields.InvoiceId[this] = value;
         }
 
-        [DisplayName("Product"), PrimaryKey, NotNull, ForeignKey("Product", "Id"), LeftJoin("jProduct"), TextualField("ProductName")]
+        [DisplayName("Product"), PrimaryKey, NotNull, ForeignKey("[Product]", "Id"), LeftJoin("jProduct"), TextualField("ProductName")]
         [LookupEditor(typeof(Merchandise.ProductRow))]
         public Int32? ProductId
         {

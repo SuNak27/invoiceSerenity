@@ -12,32 +12,36 @@
         Email?: string;
         MaximumUser?: number;
         ProductNumberPrefix?: string;
-        ProductNumberUseDate?: string;
+        ProductNumberUseDate?: boolean;
         ProductNumberLength?: number;
         CustomerNumberPrefix?: string;
-        CustomerNumberUseDate?: string;
+        CustomerNumberUseDate?: boolean;
         CustomerNumberLength?: number;
         SalesNumberPrefix?: string;
-        SalesNumberUseDate?: string;
+        SalesNumberUseDate?: boolean;
         SalesNumberLength?: number;
         InvoiceNumberPrefix?: string;
-        InvoiceNumberUseDate?: string;
+        InvoiceNumberUseDate?: boolean;
         InvoiceNumberLength?: number;
         InvoicePaymentNumberPrefix?: string;
-        InvoicePaymentNumberUseDate?: string;
+        InvoicePaymentNumberUseDate?: boolean;
         InvoicePaymentNumberLength?: number;
         VendorNumberPrefix?: string;
-        VendorNumberUseDate?: string;
-        VendorNumberLength?: string;
+        VendorNumberUseDate?: boolean;
+        VendorNumberLength?: number;
         PurchaseNumberPrefix?: string;
-        PurchaseNumberUseDate?: string;
+        PurchaseNumberUseDate?: boolean;
         PurchaseNumberLength?: number;
         BillNumberPrefix?: string;
-        BillNumberUseDate?: string;
+        BillNumberUseDate?: boolean;
         BillNumberLength?: number;
         BillPaymentNumberPrefix?: string;
-        BillPaymentNumberUseDate?: string;
+        BillPaymentNumberUseDate?: boolean;
         BillPaymentNumberLength?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace MyCompanyRow {
@@ -87,7 +91,11 @@
             BillNumberLength = "BillNumberLength",
             BillPaymentNumberPrefix = "BillPaymentNumberPrefix",
             BillPaymentNumberUseDate = "BillPaymentNumberUseDate",
-            BillPaymentNumberLength = "BillPaymentNumberLength"
+            BillPaymentNumberLength = "BillPaymentNumberLength",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

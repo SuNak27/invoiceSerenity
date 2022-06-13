@@ -13,5 +13,11 @@ namespace InvoiceKu.Settings {
         constructor(container: JQuery) {
             super(container);
         }
+
+        protected updateInterface(): void {
+            super.updateInterface();
+            var addButton = this.toolbar.findButton('add-button');
+            addButton.hide();
+        }
     }
 }

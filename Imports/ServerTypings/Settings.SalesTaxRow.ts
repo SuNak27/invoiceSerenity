@@ -4,17 +4,23 @@
         Name?: string;
         Description?: string;
         TaxRatePercentage?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace SalesTaxRow {
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Settings.SalesTax';
+        export const lookupKey = 'Settings.SalesTax';
+
+        export function getLookup(): Q.Lookup<SalesTaxRow> {
+            return Q.getLookup<SalesTaxRow>('Settings.SalesTax');
+        }
         export const deletePermission = 'Settings:SalesTax';
         export const insertPermission = 'Settings:SalesTax';
         export const readPermission = 'Settings:SalesTax';
@@ -25,11 +31,12 @@
             Name = "Name",
             Description = "Description",
             TaxRatePercentage = "TaxRatePercentage",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }

@@ -14,5 +14,10 @@ namespace InvoiceKu.Settings {
 
         protected form = new MyCompanyForm(this.idPrefix);
 
+        protected updateInterface(): void {
+            super.updateInterface();
+            this.deleteButton.hide();
+        }
+
     }
 }
