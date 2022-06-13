@@ -6,4 +6,3 @@ using Administration = InvoiceKu.Administration.Pages;
 [assembly: NavigationLink(9200, "Administration/Translations", typeof(Administration.TranslationController), icon: "fa-comment-o")]
 [assembly: NavigationLink(9300, "Administration/Roles", typeof(Administration.RoleController), icon: "fa-lock")]
 [assembly: NavigationLink(9400, "Administration/User Management", typeof(Administration.UserController), icon: "fa-users")]
-[assembly: NavigationLink(9500, "Administration/Tenant", typeof(Administration.TenantController), icon: "fa-home")]

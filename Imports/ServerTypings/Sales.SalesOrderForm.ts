@@ -13,6 +13,13 @@
         TaxAmount: Serenity.DecimalEditor;
         OtherCharge: Serenity.DecimalEditor;
         Total: Serenity.DecimalEditor;
+        CustomerName: Serenity.StringEditor;
+        CustomerStreet: Serenity.StringEditor;
+        CustomerCity: Serenity.StringEditor;
+        CustomerState: Serenity.StringEditor;
+        CustomerZipCode: Serenity.StringEditor;
+        CustomerPhone: Serenity.StringEditor;
+        CustomerEmail: Serenity.StringEditor;
     }
 
     export class SalesOrderForm extends Serenity.PrefixedContext {
@@ -46,7 +53,14 @@
                     'BeforeTax', w5,
                     'TaxAmount', w5,
                     'OtherCharge', w5,
-                    'Total', w5
+                    'Total', w5,
+                    'CustomerName', w0,
+                    'CustomerStreet', w0,
+                    'CustomerCity', w0,
+                    'CustomerState', w0,
+                    'CustomerZipCode', w0,
+                    'CustomerPhone', w0,
+                    'CustomerEmail', w0
                 ]);
             }
         }

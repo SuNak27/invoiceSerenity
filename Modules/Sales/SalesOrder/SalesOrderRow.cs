@@ -77,6 +77,7 @@ namespace InvoiceKu.Sales
         }
 
         [DisplayName("Sub Total"), NotNull]
+        [DefaultValue(0), Insertable(false), Updatable(false)]
         public double? SubTotal
         {
             get => fields.SubTotal[this];
@@ -84,6 +85,7 @@ namespace InvoiceKu.Sales
         }
 
         [DisplayName("Discount"), NotNull]
+        [DefaultValue(0), Insertable(false), Updatable(false)]
         public double? Discount
         {
             get => fields.Discount[this];
@@ -91,6 +93,7 @@ namespace InvoiceKu.Sales
         }
 
         [DisplayName("Before Tax"), NotNull]
+        [DefaultValue(0), Insertable(false), Updatable(false)]
         public double? BeforeTax
         {
             get => fields.BeforeTax[this];
@@ -98,6 +101,7 @@ namespace InvoiceKu.Sales
         }
 
         [DisplayName("Tax Amount"), NotNull]
+        [DefaultValue(0), Insertable(false), Updatable(false)]
         public double? TaxAmount
         {
             get => fields.TaxAmount[this];
@@ -105,6 +109,7 @@ namespace InvoiceKu.Sales
         }
 
         [DisplayName("Total"), NotNull]
+        [DefaultValue(0), Insertable(false), Updatable(false)]
         public double? Total
         {
             get => fields.Total[this];
@@ -112,6 +117,7 @@ namespace InvoiceKu.Sales
         }
 
         [DisplayName("Other Charge"), NotNull]
+        [DefaultValue(0)]
         public double? OtherCharge
         {
             get => fields.OtherCharge[this];
@@ -144,6 +150,83 @@ namespace InvoiceKu.Sales
         {
             get => fields.UpdateUserId[this];
             set => fields.UpdateUserId[this] = value;
+        }
+
+        [DisplayName("Customer Name"), Expression("jCustomer.[Name]")]
+        [Insertable(false), Updatable(false)]
+        public String CustomerName
+        {
+            get => fields.CustomerName[this];
+            set => fields.CustomerName[this] = value;
+        }
+
+        [DisplayName("Customer Street"), Expression("jCustomer.[Street]")]
+        [Insertable(false), Updatable(false)]
+        public String CustomerStreet
+        {
+            get => fields.CustomerStreet[this];
+            set => fields.CustomerStreet[this] = value;
+        }
+
+        [DisplayName("Customer City"), Expression("jCustomer.[City]")]
+        [Insertable(false), Updatable(false)]
+        public String CustomerCity
+        {
+            get => fields.CustomerCity[this];
+            set => fields.CustomerCity[this] = value;
+        }
+
+        [DisplayName("Customer State"), Expression("jCustomer.[State]")]
+        [Insertable(false), Updatable(false)]
+        public String CustomerState
+        {
+            get => fields.CustomerState[this];
+            set => fields.CustomerState[this] = value;
+        }
+
+        [DisplayName("Customer Zip Code"), Expression("jCustomer.[ZipCode]")]
+        [Insertable(false), Updatable(false)]
+        public String CustomerZipCode
+        {
+            get => fields.CustomerZipCode[this];
+            set => fields.CustomerZipCode[this] = value;
+        }
+
+        [DisplayName("Customer Phone"), Expression("jCustomer.[Phone]")]
+        [Insertable(false), Updatable(false)]
+        public String CustomerPhone
+        {
+            get => fields.CustomerPhone[this];
+            set => fields.CustomerPhone[this] = value;
+        }
+
+        [DisplayName("Customer Email"), Expression("jCustomer.[Email]")]
+        [Insertable(false), Updatable(false)]
+        public String CustomerEmail
+        {
+            get => fields.CustomerEmail[this];
+            set => fields.CustomerEmail[this] = value;
+        }
+
+        [DisplayName("Items"), MasterDetailRelation(foreignKey: "SalesOrderId"), NotMapped]
+        public List<SalesOrderDetailRow> ItemList
+        {
+            get => fields.ItemList[this];
+            set => fields.ItemList[this] = value;
+        }
+
+        [DisplayName("Invoices"), MasterDetailRelation(foreignKey: "SalesOrderId"), NotMapped]
+        public List<InvoiceRow> InvoiceList
+        {
+            get => fields.InvoiceList[this];
+            set => fields.InvoiceList[this] = value;
+        }
+
+        [DisplayName("Sales Group"), Size(200)]
+        public String SalesGroup
+        {
+            get => fields.SalesGroup[this];
+            set => fields.SalesGroup[this] = value;
         }
 
         [DisplayName("Tenant"), ForeignKey("Tenant", "TenantId"), LeftJoin("jTenant")]
@@ -191,23 +274,29 @@ namespace InvoiceKu.Sales
             public StringField SalesGroup;
             public DateTimeField OrderDate;
             public Int32Field CustomerId;
-            public Int32Field SalesChannelId;
             public DoubleField SubTotal;
             public DoubleField Discount;
             public DoubleField BeforeTax;
             public DoubleField TaxAmount;
             public DoubleField Total;
             public DoubleField OtherCharge;
-            public DateTimeField InsertDate;
-            public Int32Field InsertUserId;
-            public DateTimeField UpdateDate;
-            public Int32Field UpdateUserId;
+
+            public StringField CustomerName;
+            public StringField CustomerStreet;
+            public StringField CustomerCity;
+            public StringField CustomerState;
+            public StringField CustomerZipCode;
+            public StringField CustomerPhone;
+            public StringField CustomerEmail;
+            public Int32Field SalesChannelId;
+            public StringField SalesChannelName;
 
             public StringField CurrencyName;
             public Int32Field TenantId;
             public StringField TenantName;
 
             public RowListField<SalesOrderDetailRow> ItemList;
+            public RowListField<InvoiceRow> InvoiceList;
         }
     }
 }

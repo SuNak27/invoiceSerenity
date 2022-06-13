@@ -96,7 +96,24 @@ namespace InvoiceKu.Administration.Entities
         {
             get => fields.LastDirectoryUpdate[this];
             set => fields.LastDirectoryUpdate[this] = value;
-        }
+        }
+
+        [DisplayName("Tenant"), NotNull, ForeignKey("Tenant", "TenantId"), LeftJoin("jTenant")]
+        [LookupEditor(typeof(TenantRow), InplaceAdd = true)]
+        [ReadPermission(PermissionKeys.Tenant)]
+        public Int32? TenantId
+        {
+            get { return Fields.TenantId[this]; }
+            set { Fields.TenantId[this] = value; }
+        }
+
+        [DisplayName("Tenant"), Expression("jTenant.TenantName")]
+        public String TenantName
+        {
+            get { return Fields.TenantName[this]; }
+            set { Fields.TenantName[this] = value; }
+        }
+
         Int16Field IIsActiveRow.IsActiveField
         {
             get => fields.IsActive;
@@ -126,6 +143,9 @@ namespace InvoiceKu.Administration.Entities
 
             public StringField Password;
             public StringField PasswordConfirm;
+
+            public Int32Field TenantId;
+            public StringField TenantName;
         }
     }
 }

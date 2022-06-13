@@ -13,5 +13,8 @@ namespace InvoiceKu.Administration
 
         [Description("Languages and Translations")]
         public const string Translation = "Administration:Translation";
+
+        [Description("Multi tenant management")]
+        public const string Tenant = "Administration:Tenant";
     }
 }

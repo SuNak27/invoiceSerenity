@@ -3,67 +3,73 @@
         TenantId?: number;
         TenantName?: string;
         Description?: string;
-        Currency?: string;
         Street?: string;
         City?: string;
         State?: string;
         ZipCode?: string;
         Phone?: string;
         Email?: string;
+        Currency?: string;
+        MaximumUser?: number;
         ProductNumberPrefix?: string;
-        ProductNumberUseDate?: number;
+        ProductNumberUseDate?: boolean;
         ProductNumberLength?: number;
         CustomerNumberPrefix?: string;
-        CustomerNumberUseDate?: number;
+        CustomerNumberUseDate?: boolean;
         CustomerNumberLength?: number;
         SalesNumberPrefix?: string;
-        SalesNumberUseDate?: number;
+        SalesNumberUseDate?: boolean;
         SalesNumberLength?: number;
         InvoiceNumberPrefix?: string;
-        InvoiceNumberUseDate?: number;
+        InvoiceNumberUseDate?: boolean;
         InvoiceNumberLength?: number;
         InvoicePaymentNumberPrefix?: string;
-        InvoicePaymentNumberUseDate?: number;
+        InvoicePaymentNumberUseDate?: boolean;
         InvoicePaymentNumberLength?: number;
         VendorNumberPrefix?: string;
-        VendorNumberUseDate?: number;
+        VendorNumberUseDate?: boolean;
         VendorNumberLength?: number;
         PurchaseNumberPrefix?: string;
-        PurchaseNumberUseDate?: number;
+        PurchaseNumberUseDate?: boolean;
         PurchaseNumberLength?: number;
         BillNumberPrefix?: string;
-        BillNumberUseDate?: number;
+        BillNumberUseDate?: boolean;
         BillNumberLength?: number;
         BillPaymentNumberPrefix?: string;
-        BillPaymentNumberUseDate?: number;
+        BillPaymentNumberUseDate?: boolean;
         BillPaymentNumberLength?: number;
-        MaximumUser?: number;
-        InsertDate?: string;
         InsertUserId?: number;
-        UpdateDate?: string;
+        InsertDate?: string;
         UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace TenantRow {
         export const idProperty = 'TenantId';
         export const nameProperty = 'TenantName';
         export const localTextPrefix = 'Administration.Tenant';
-        export const deletePermission = 'Administration:General';
-        export const insertPermission = 'Administration:General';
-        export const readPermission = 'Administration:General';
-        export const updatePermission = 'Administration:General';
+        export const lookupKey = 'Administration.Tenant';
+
+        export function getLookup(): Q.Lookup<TenantRow> {
+            return Q.getLookup<TenantRow>('Administration.Tenant');
+        }
+        export const deletePermission = 'Administration:Tenant';
+        export const insertPermission = 'Administration:Tenant';
+        export const readPermission = 'Administration:Tenant';
+        export const updatePermission = 'Administration:Tenant';
 
         export declare const enum Fields {
             TenantId = "TenantId",
             TenantName = "TenantName",
             Description = "Description",
-            Currency = "Currency",
             Street = "Street",
             City = "City",
             State = "State",
             ZipCode = "ZipCode",
             Phone = "Phone",
             Email = "Email",
+            Currency = "Currency",
+            MaximumUser = "MaximumUser",
             ProductNumberPrefix = "ProductNumberPrefix",
             ProductNumberUseDate = "ProductNumberUseDate",
             ProductNumberLength = "ProductNumberLength",
@@ -91,11 +97,10 @@
             BillPaymentNumberPrefix = "BillPaymentNumberPrefix",
             BillPaymentNumberUseDate = "BillPaymentNumberUseDate",
             BillPaymentNumberLength = "BillPaymentNumberLength",
-            MaximumUser = "MaximumUser",
-            InsertDate = "InsertDate",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId"
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }

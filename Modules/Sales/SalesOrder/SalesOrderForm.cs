@@ -47,5 +47,18 @@ namespace InvoiceKu.Sales.Forms
         public Double TaxAmount { get; set; }
         public Double OtherCharge { get; set; }
         public Double Total { get; set; }
+
+        [Tab("Customer")]
+        [Category("Name")]
+        public string CustomerName { get; set; }
+
+        [Category("Address")]
+        public string CustomerStreet { get; set; }
+        public string CustomerCity { get; set; }
+        public string CustomerState { get; set; }
+        public string CustomerZipCode { get; set; }
+        public string CustomerPhone { get; set; }
+        public string CustomerEmail { get; set; }
+
     }
 }

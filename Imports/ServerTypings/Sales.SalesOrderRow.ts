@@ -17,6 +17,13 @@
         InsertUserId?: number;
         UpdateDate?: string;
         UpdateUserId?: number;
+        CustomerName?: string;
+        CustomerStreet?: string;
+        CustomerCity?: string;
+        CustomerState?: string;
+        CustomerZipCode?: string;
+        CustomerPhone?: string;
+        CustomerEmail?: string;
         CurrencyName?: string;
         TenantId?: number;
         TenantName?: string;
@@ -50,6 +57,13 @@
             InsertUserId = "InsertUserId",
             UpdateDate = "UpdateDate",
             UpdateUserId = "UpdateUserId",
+            CustomerName = "CustomerName",
+            CustomerStreet = "CustomerStreet",
+            CustomerCity = "CustomerCity",
+            CustomerState = "CustomerState",
+            CustomerZipCode = "CustomerZipCode",
+            CustomerPhone = "CustomerPhone",
+            CustomerEmail = "CustomerEmail",
             CurrencyName = "CurrencyName",
             TenantId = "TenantId",
             TenantName = "TenantName",

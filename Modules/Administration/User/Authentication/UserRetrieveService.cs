@@ -1,11 +1,11 @@
-﻿using MyRow = InvoiceKu.Administration.Entities.UserRow;
-using Serenity;
+﻿using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
 using System;
 using System.Data;
 using System.Security.Claims;
 using System.Security.Principal;
+using MyRow = InvoiceKu.Administration.Entities.UserRow;
 
 namespace InvoiceKu.Administration
 {
@@ -38,7 +38,8 @@ namespace InvoiceKu.Administration
                     PasswordHash = user.PasswordHash,
                     PasswordSalt = user.PasswordSalt,
                     UpdateDate = user.UpdateDate,
-                    LastDirectoryUpdate = user.LastDirectoryUpdate
+                    LastDirectoryUpdate = user.LastDirectoryUpdate,
+                    TenantId = user.TenantId.Value
                 };
 
             return null;
@@ -49,7 +50,7 @@ namespace InvoiceKu.Administration
             return Cache.Get("UserByID_" + id, TimeSpan.Zero, TimeSpan.FromDays(1), fld.GenerationKey, () =>
             {
                 using var connection = SqlConnections.NewByKey("Default");
-                    return GetFirst(connection, new Criteria(fld.UserId) == int.Parse(id));
+                return GetFirst(connection, new Criteria(fld.UserId) == int.Parse(id));
             });
         }
 
@@ -58,11 +59,11 @@ namespace InvoiceKu.Administration
             if (username.IsEmptyOrNull())
                 return null;
 
-            return Cache.Get("UserByName_" + username.ToLowerInvariant(), 
+            return Cache.Get("UserByName_" + username.ToLowerInvariant(),
                 TimeSpan.Zero, TimeSpan.FromDays(1), fld.GenerationKey, () =>
             {
                 using var connection = SqlConnections.NewByKey("Default");
-                    return GetFirst(connection, new Criteria(fld.Username) == username);
+                return GetFirst(connection, new Criteria(fld.Username) == username);
             });
         }
 
