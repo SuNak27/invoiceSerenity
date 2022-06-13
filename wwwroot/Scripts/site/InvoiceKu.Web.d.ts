@@ -2039,7 +2039,7 @@ declare namespace InvoiceKu.Sales {
 declare namespace InvoiceKu.Sales {
     interface InvoiceDetailForm {
         InvoiceId: Serenity.IntegerEditor;
-        ProductId: Serenity.IntegerEditor;
+        ProductId: Serenity.LookupEditor;
         Price: Serenity.DecimalEditor;
         Qty: Serenity.DecimalEditor;
         SubTotal: Serenity.DecimalEditor;
@@ -2073,15 +2073,20 @@ declare namespace InvoiceKu.Sales {
         TaxPercentage?: number;
         TaxAmount?: number;
         Total?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
+        ProductName?: string;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace InvoiceDetailRow {
         const idProperty = "Id";
+        const nameProperty = "ProductName";
         const localTextPrefix = "Sales.InvoiceDetail";
+        const lookupKey = "Sales.InvoiceDetail";
+        function getLookup(): Q.Lookup<InvoiceDetailRow>;
         const deletePermission = "Sales:Invoice";
         const insertPermission = "Sales:Invoice";
         const readPermission = "Sales:Invoice";
@@ -2098,11 +2103,13 @@ declare namespace InvoiceKu.Sales {
             TaxPercentage = "TaxPercentage",
             TaxAmount = "TaxAmount",
             Total = "Total",
-            InsertDate = "InsertDate",
+            ProductName = "ProductName",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -2129,7 +2136,7 @@ declare namespace InvoiceKu.Sales {
         Description: Serenity.StringEditor;
         SalesGroup: Serenity.StringEditor;
         InvoiceDate: Serenity.DateEditor;
-        SalesOrderId: Serenity.IntegerEditor;
+        SalesOrderId: Serenity.LookupEditor;
         SubTotal: Serenity.DecimalEditor;
         Discount: Serenity.DecimalEditor;
         BeforeTax: Serenity.DecimalEditor;
@@ -2240,25 +2247,40 @@ declare namespace InvoiceKu.Sales {
         Id?: number;
         Number?: string;
         Description?: string;
-        SalesGroup?: string;
         InvoiceDate?: string;
         SalesOrderId?: number;
+        SalesOrderNumber?: string;
         SubTotal?: number;
         Discount?: number;
         BeforeTax?: number;
         TaxAmount?: number;
         Total?: number;
         OtherCharge?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
+        CustomerId?: number;
+        CustomerName?: string;
+        CustomerStreet?: string;
+        CustomerCity?: string;
+        CustomerState?: string;
+        CustomerZipCode?: string;
+        CustomerPhone?: string;
+        CustomerEmail?: string;
+        SalesGroup?: string;
+        CurrencyName?: string;
         TenantId?: number;
+        TenantName?: string;
+        ItemList?: InvoiceDetailRow[];
+        InvoicePaymentList?: InvoicePaymentRow[];
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace InvoiceRow {
         const idProperty = "Id";
         const nameProperty = "Number";
         const localTextPrefix = "Sales.Invoice";
+        const lookupKey = "Sales.Invoice";
+        function getLookup(): Q.Lookup<InvoiceRow>;
         const deletePermission = "Sales:Invoice";
         const insertPermission = "Sales:Invoice";
         const readPermission = "Sales:Invoice";
@@ -2267,20 +2289,33 @@ declare namespace InvoiceKu.Sales {
             Id = "Id",
             Number = "Number",
             Description = "Description",
-            SalesGroup = "SalesGroup",
             InvoiceDate = "InvoiceDate",
             SalesOrderId = "SalesOrderId",
+            SalesOrderNumber = "SalesOrderNumber",
             SubTotal = "SubTotal",
             Discount = "Discount",
             BeforeTax = "BeforeTax",
             TaxAmount = "TaxAmount",
             Total = "Total",
             OtherCharge = "OtherCharge",
-            InsertDate = "InsertDate",
+            CustomerId = "CustomerId",
+            CustomerName = "CustomerName",
+            CustomerStreet = "CustomerStreet",
+            CustomerCity = "CustomerCity",
+            CustomerState = "CustomerState",
+            CustomerZipCode = "CustomerZipCode",
+            CustomerPhone = "CustomerPhone",
+            CustomerEmail = "CustomerEmail",
+            SalesGroup = "SalesGroup",
+            CurrencyName = "CurrencyName",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
+            ItemList = "ItemList",
+            InvoicePaymentList = "InvoicePaymentList",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -2393,21 +2428,15 @@ declare namespace InvoiceKu.Sales {
 }
 declare namespace InvoiceKu.Sales {
     interface SalesOrderDetailForm {
-        SalesOrderId: Serenity.IntegerEditor;
-        ProductId: Serenity.IntegerEditor;
+        ProductId: Serenity.LookupEditor;
         Price: Serenity.DecimalEditor;
         Qty: Serenity.DecimalEditor;
-        SubTotal: Serenity.DecimalEditor;
         Discount: Serenity.DecimalEditor;
-        BeforeTax: Serenity.DecimalEditor;
         TaxPercentage: Serenity.DecimalEditor;
+        SubTotal: Serenity.DecimalEditor;
+        BeforeTax: Serenity.DecimalEditor;
         TaxAmount: Serenity.DecimalEditor;
         Total: Serenity.DecimalEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
     }
     class SalesOrderDetailForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -2420,7 +2449,6 @@ declare namespace InvoiceKu.Sales {
         Id?: number;
         SalesOrderId?: number;
         ProductId?: number;
-        ProductName?: string;
         Price?: number;
         Qty?: number;
         SubTotal?: number;
@@ -2429,16 +2457,20 @@ declare namespace InvoiceKu.Sales {
         TaxPercentage?: number;
         TaxAmount?: number;
         Total?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
+        ProductName?: string;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace SalesOrderDetailRow {
         const idProperty = "Id";
         const nameProperty = "ProductName";
         const localTextPrefix = "Sales.SalesOrderDetail";
+        const lookupKey = "Sales.SalesOrderDetail";
+        function getLookup(): Q.Lookup<SalesOrderDetailRow>;
         const deletePermission = "Sales:SalesOrder";
         const insertPermission = "Sales:SalesOrder";
         const readPermission = "Sales:SalesOrder";
@@ -2447,7 +2479,6 @@ declare namespace InvoiceKu.Sales {
             Id = "Id",
             SalesOrderId = "SalesOrderId",
             ProductId = "ProductId",
-            ProductName = "ProductName",
             Price = "Price",
             Qty = "Qty",
             SubTotal = "SubTotal",
@@ -2456,11 +2487,13 @@ declare namespace InvoiceKu.Sales {
             TaxPercentage = "TaxPercentage",
             TaxAmount = "TaxAmount",
             Total = "Total",
-            InsertDate = "InsertDate",
+            ProductName = "ProductName",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -2503,6 +2536,7 @@ declare namespace InvoiceKu.Sales {
         CustomerZipCode: Serenity.StringEditor;
         CustomerPhone: Serenity.StringEditor;
         CustomerEmail: Serenity.StringEditor;
+        InvoiceList: InvoiceEditor;
     }
     class SalesOrderForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -2514,21 +2548,16 @@ declare namespace InvoiceKu.Sales {
     interface SalesOrderRow {
         Id?: number;
         Number?: string;
-        Description?: string;
         SalesGroup?: string;
+        Description?: string;
         OrderDate?: string;
         CustomerId?: number;
-        SalesChannelId?: number;
         SubTotal?: number;
         Discount?: number;
         BeforeTax?: number;
         TaxAmount?: number;
         Total?: number;
         OtherCharge?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         CustomerName?: string;
         CustomerStreet?: string;
         CustomerCity?: string;
@@ -2536,15 +2565,24 @@ declare namespace InvoiceKu.Sales {
         CustomerZipCode?: string;
         CustomerPhone?: string;
         CustomerEmail?: string;
+        SalesChannelId?: number;
+        SalesChannelName?: string;
         CurrencyName?: string;
         TenantId?: number;
         TenantName?: string;
         ItemList?: SalesOrderDetailRow[];
+        InvoiceList?: InvoiceRow[];
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace SalesOrderRow {
         const idProperty = "Id";
         const nameProperty = "Number";
         const localTextPrefix = "Sales.SalesOrder";
+        const lookupKey = "Sales.SalesOrder";
+        function getLookup(): Q.Lookup<SalesOrderRow>;
         const deletePermission = "Sales:SalesOrder";
         const insertPermission = "Sales:SalesOrder";
         const readPermission = "Sales:SalesOrder";
@@ -2552,21 +2590,16 @@ declare namespace InvoiceKu.Sales {
         const enum Fields {
             Id = "Id",
             Number = "Number",
-            Description = "Description",
             SalesGroup = "SalesGroup",
+            Description = "Description",
             OrderDate = "OrderDate",
             CustomerId = "CustomerId",
-            SalesChannelId = "SalesChannelId",
             SubTotal = "SubTotal",
             Discount = "Discount",
             BeforeTax = "BeforeTax",
             TaxAmount = "TaxAmount",
             Total = "Total",
             OtherCharge = "OtherCharge",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
             CustomerName = "CustomerName",
             CustomerStreet = "CustomerStreet",
             CustomerCity = "CustomerCity",
@@ -2574,10 +2607,17 @@ declare namespace InvoiceKu.Sales {
             CustomerZipCode = "CustomerZipCode",
             CustomerPhone = "CustomerPhone",
             CustomerEmail = "CustomerEmail",
+            SalesChannelId = "SalesChannelId",
+            SalesChannelName = "SalesChannelName",
             CurrencyName = "CurrencyName",
             TenantId = "TenantId",
             TenantName = "TenantName",
-            ItemList = "ItemList"
+            ItemList = "ItemList",
+            InvoiceList = "InvoiceList",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -3660,6 +3700,16 @@ declare namespace InvoiceKu.Sales {
     }
 }
 declare namespace InvoiceKu.Sales {
+    class InvoiceEditor extends Serenity.Extensions.GridEditorBase<InvoiceRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof InvoiceDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace InvoiceKu.Sales {
     class InvoiceGrid extends Serenity.EntityGrid<InvoiceRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): typeof InvoiceDialog;
@@ -3772,18 +3822,19 @@ declare namespace InvoiceKu.Sales {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getButtons(): Serenity.ToolButton[];
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
     }
 }
 declare namespace InvoiceKu.Sales {
-    class SalesOrderDetailDialog extends Serenity.EntityDialog<SalesOrderDetailRow, any> {
+    class SalesOrderDetailDialog extends Serenity.Extensions.GridEditorDialog<SalesOrderDetailRow> {
         protected getFormKey(): string;
-        protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected getDeletePermission(): string;
-        protected getInsertPermission(): string;
-        protected getUpdatePermission(): string;
         protected form: SalesOrderDetailForm;
+        constructor();
+        private recalculate;
+        protected updateInterface(): void;
     }
 }
 declare namespace InvoiceKu.Sales {

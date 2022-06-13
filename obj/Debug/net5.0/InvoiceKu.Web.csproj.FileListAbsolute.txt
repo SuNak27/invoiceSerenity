@@ -1015,3 +1015,4 @@ C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.We
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\InvoiceKu.Web.pdb
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\InvoiceKu.Web.genruntimeconfig.cache
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Administration\Tenant\TenantIndex.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Sales\SalesOrder\SalesOrderPrint.cshtml.g.cs

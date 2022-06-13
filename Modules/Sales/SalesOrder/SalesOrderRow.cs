@@ -1,23 +1,24 @@
-﻿using System.Linq;
-using Serenity;
+﻿using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
+using Serenity.Extensions.Entities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Collections.Generic;
 
 namespace InvoiceKu.Sales
 {
-    [ConnectionKey("Default"), Module("Sales"), TableName("salesorder")]
-    [DisplayName("Sales Order"), InstanceName("Sales Order")]
+    [ConnectionKey("Default"), Module("Sales"), TableName("[SalesOrder]")]
+    [DisplayName("Sales Orders"), InstanceName("Sales Order")]
     [ReadPermission("Sales:SalesOrder")]
     [ModifyPermission("Sales:SalesOrder")]
-    public sealed class SalesOrderRow : Row<SalesOrderRow.RowFields>, IIdRow, INameRow
+    [LookupScript(LookupType = typeof(MultiTenantRowLookupScript<>))]
+    public sealed class SalesOrderRow : LoggingRow<SalesOrderRow.RowFields>, IIdRow, INameRow, IMultiTenantRow
     {
         [DisplayName("Id"), Identity, IdProperty]
-        public int? Id
+        public Int32? Id
         {
             get => fields.Id[this];
             set => fields.Id[this] = value;
@@ -26,24 +27,17 @@ namespace InvoiceKu.Sales
         [DisplayName("Number"), Size(200), NotNull, QuickSearch, NameProperty]
         [Insertable(false), Updatable(false)]
         [DefaultValue("auto")]
-        public string Number
+        public String Number
         {
             get => fields.Number[this];
             set => fields.Number[this] = value;
         }
 
         [DisplayName("Description"), Size(1000)]
-        public string Description
+        public String Description
         {
             get => fields.Description[this];
             set => fields.Description[this] = value;
-        }
-
-        [DisplayName("Sales Group"), Size(200)]
-        public string SalesGroup
-        {
-            get => fields.SalesGroup[this];
-            set => fields.SalesGroup[this] = value;
         }
 
         [DisplayName("Order Date"), NotNull]
@@ -51,6 +45,22 @@ namespace InvoiceKu.Sales
         {
             get => fields.OrderDate[this];
             set => fields.OrderDate[this] = value;
+        }
+
+        [DisplayName("Sales Channel"), NotNull, ForeignKey("[SalesChannel]", "Id"), LeftJoin("jSalesChannel"), TextualField("SalesChannelName")]
+        [LookupEditor(typeof(SalesChannelRow), InplaceAdd = true)]
+        public Int32? SalesChannelId
+        {
+            get => fields.SalesChannelId[this];
+            set => fields.SalesChannelId[this] = value;
+        }
+
+        [DisplayName("Sales Channel"), Expression("jSalesChannel.[Name]")]
+        [Insertable(false), Updatable(false)]
+        public String SalesChannelName
+        {
+            get => fields.SalesChannelName[this];
+            set => fields.SalesChannelName[this] = value;
         }
 
         [DisplayName("Customer"), NotNull, ForeignKey("[Customer]", "Id"), LeftJoin("jCustomer"), TextualField("CustomerName")]
@@ -61,24 +71,9 @@ namespace InvoiceKu.Sales
             set => fields.CustomerId[this] = value;
         }
 
-        [DisplayName("Sales Channel"), NotNull, ForeignKey("[SalesChannel]", "Id"), LeftJoin("jSalesChannel"), TextualField("SalesChannelName")]
-        [LookupEditor(typeof(SalesChannelRow), InplaceAdd = true)]
-        public int? SalesChannelId
-        {
-            get => fields.SalesChannelId[this];
-            set => fields.SalesChannelId[this] = value;
-        }
-
-        [DisplayName("Items"), MasterDetailRelation(foreignKey: "SalesOrderId"), NotMapped]
-        public List<SalesOrderDetailRow> ItemList
-        {
-            get => fields.ItemList[this];
-            set => fields.ItemList[this] = value;
-        }
-
         [DisplayName("Sub Total"), NotNull]
         [DefaultValue(0), Insertable(false), Updatable(false)]
-        public double? SubTotal
+        public Double? SubTotal
         {
             get => fields.SubTotal[this];
             set => fields.SubTotal[this] = value;
@@ -86,7 +81,7 @@ namespace InvoiceKu.Sales
 
         [DisplayName("Discount"), NotNull]
         [DefaultValue(0), Insertable(false), Updatable(false)]
-        public double? Discount
+        public Double? Discount
         {
             get => fields.Discount[this];
             set => fields.Discount[this] = value;
@@ -94,7 +89,7 @@ namespace InvoiceKu.Sales
 
         [DisplayName("Before Tax"), NotNull]
         [DefaultValue(0), Insertable(false), Updatable(false)]
-        public double? BeforeTax
+        public Double? BeforeTax
         {
             get => fields.BeforeTax[this];
             set => fields.BeforeTax[this] = value;
@@ -102,15 +97,15 @@ namespace InvoiceKu.Sales
 
         [DisplayName("Tax Amount"), NotNull]
         [DefaultValue(0), Insertable(false), Updatable(false)]
-        public double? TaxAmount
+        public Double? TaxAmount
         {
             get => fields.TaxAmount[this];
             set => fields.TaxAmount[this] = value;
         }
 
-        [DisplayName("Total"), NotNull]
+        [DisplayName("Total"), NotNull, DecimalEditor(Decimals = 2, MinValue = 0), DisplayFormat("#,##0.##")]
         [DefaultValue(0), Insertable(false), Updatable(false)]
-        public double? Total
+        public Double? Total
         {
             get => fields.Total[this];
             set => fields.Total[this] = value;
@@ -118,38 +113,10 @@ namespace InvoiceKu.Sales
 
         [DisplayName("Other Charge"), NotNull]
         [DefaultValue(0)]
-        public double? OtherCharge
+        public Double? OtherCharge
         {
             get => fields.OtherCharge[this];
             set => fields.OtherCharge[this] = value;
-        }
-
-        [DisplayName("Insert Date")]
-        public DateTime? InsertDate
-        {
-            get => fields.InsertDate[this];
-            set => fields.InsertDate[this] = value;
-        }
-
-        [DisplayName("Insert User Id")]
-        public int? InsertUserId
-        {
-            get => fields.InsertUserId[this];
-            set => fields.InsertUserId[this] = value;
-        }
-
-        [DisplayName("Update Date")]
-        public DateTime? UpdateDate
-        {
-            get => fields.UpdateDate[this];
-            set => fields.UpdateDate[this] = value;
-        }
-
-        [DisplayName("Update User Id")]
-        public int? UpdateUserId
-        {
-            get => fields.UpdateUserId[this];
-            set => fields.UpdateUserId[this] = value;
         }
 
         [DisplayName("Customer Name"), Expression("jCustomer.[Name]")]
@@ -266,12 +233,12 @@ namespace InvoiceKu.Sales
         {
         }
 
-        public class RowFields : RowFieldsBase
+        public class RowFields : LoggingRowFields
         {
             public Int32Field Id;
             public StringField Number;
-            public StringField Description;
             public StringField SalesGroup;
+            public StringField Description;
             public DateTimeField OrderDate;
             public Int32Field CustomerId;
             public DoubleField SubTotal;

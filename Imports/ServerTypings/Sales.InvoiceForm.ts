@@ -4,7 +4,7 @@
         Description: Serenity.StringEditor;
         SalesGroup: Serenity.StringEditor;
         InvoiceDate: Serenity.DateEditor;
-        SalesOrderId: Serenity.IntegerEditor;
+        SalesOrderId: Serenity.LookupEditor;
         SubTotal: Serenity.DecimalEditor;
         Discount: Serenity.DecimalEditor;
         BeforeTax: Serenity.DecimalEditor;
@@ -31,8 +31,9 @@
                 var s = Serenity;
                 var w0 = s.StringEditor;
                 var w1 = s.DateEditor;
-                var w2 = s.IntegerEditor;
+                var w2 = s.LookupEditor;
                 var w3 = s.DecimalEditor;
+                var w4 = s.IntegerEditor;
 
                 Q.initFormType(InvoiceForm, [
                     'Number', w0,
@@ -47,10 +48,10 @@
                     'Total', w3,
                     'OtherCharge', w3,
                     'InsertDate', w1,
-                    'InsertUserId', w2,
+                    'InsertUserId', w4,
                     'UpdateDate', w1,
-                    'UpdateUserId', w2,
-                    'TenantId', w2
+                    'UpdateUserId', w4,
+                    'TenantId', w4
                 ]);
             }
         }

@@ -20,6 +20,7 @@
         CustomerZipCode: Serenity.StringEditor;
         CustomerPhone: Serenity.StringEditor;
         CustomerEmail: Serenity.StringEditor;
+        InvoiceList: InvoiceEditor;
     }
 
     export class SalesOrderForm extends Serenity.PrefixedContext {
@@ -39,6 +40,7 @@
                 var w3 = s.LookupEditor;
                 var w4 = SalesOrderDetailEditor;
                 var w5 = s.DecimalEditor;
+                var w6 = InvoiceEditor;
 
                 Q.initFormType(SalesOrderForm, [
                     'Number', w0,
@@ -60,7 +62,8 @@
                     'CustomerState', w0,
                     'CustomerZipCode', w0,
                     'CustomerPhone', w0,
-                    'CustomerEmail', w0
+                    'CustomerEmail', w0,
+                    'InvoiceList', w6
                 ]);
             }
         }

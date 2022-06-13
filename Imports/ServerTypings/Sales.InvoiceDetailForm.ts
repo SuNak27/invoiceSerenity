@@ -1,7 +1,7 @@
 ﻿namespace InvoiceKu.Sales {
     export interface InvoiceDetailForm {
         InvoiceId: Serenity.IntegerEditor;
-        ProductId: Serenity.IntegerEditor;
+        ProductId: Serenity.LookupEditor;
         Price: Serenity.DecimalEditor;
         Qty: Serenity.DecimalEditor;
         SubTotal: Serenity.DecimalEditor;
@@ -29,23 +29,24 @@
 
                 var s = Serenity;
                 var w0 = s.IntegerEditor;
-                var w1 = s.DecimalEditor;
-                var w2 = s.DateEditor;
+                var w1 = s.LookupEditor;
+                var w2 = s.DecimalEditor;
+                var w3 = s.DateEditor;
 
                 Q.initFormType(InvoiceDetailForm, [
                     'InvoiceId', w0,
-                    'ProductId', w0,
-                    'Price', w1,
-                    'Qty', w1,
-                    'SubTotal', w1,
-                    'Discount', w1,
-                    'BeforeTax', w1,
-                    'TaxPercentage', w1,
-                    'TaxAmount', w1,
-                    'Total', w1,
-                    'InsertDate', w2,
+                    'ProductId', w1,
+                    'Price', w2,
+                    'Qty', w2,
+                    'SubTotal', w2,
+                    'Discount', w2,
+                    'BeforeTax', w2,
+                    'TaxPercentage', w2,
+                    'TaxAmount', w2,
+                    'Total', w2,
+                    'InsertDate', w3,
                     'InsertUserId', w0,
-                    'UpdateDate', w2,
+                    'UpdateDate', w3,
                     'UpdateUserId', w0,
                     'TenantId', w0
                 ]);

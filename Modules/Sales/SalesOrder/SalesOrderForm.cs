@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using Serenity;
+﻿using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using System;
@@ -32,7 +31,6 @@ namespace InvoiceKu.Sales.Forms
         public int SalesChannelId { get; set; }
 
         [Category("Detail")]
-        [DisplayName("Items")]
         [SalesOrderDetailEditor]
         public List<SalesOrderDetailRow> ItemList { get; set; }
 
@@ -50,15 +48,19 @@ namespace InvoiceKu.Sales.Forms
 
         [Tab("Customer")]
         [Category("Name")]
-        public string CustomerName { get; set; }
-
+        public String CustomerName { get; set; }
         [Category("Address")]
-        public string CustomerStreet { get; set; }
-        public string CustomerCity { get; set; }
-        public string CustomerState { get; set; }
-        public string CustomerZipCode { get; set; }
-        public string CustomerPhone { get; set; }
-        public string CustomerEmail { get; set; }
+        public String CustomerStreet { get; set; }
+        public String CustomerCity { get; set; }
+        public String CustomerState { get; set; }
+        public String CustomerZipCode { get; set; }
+        public String CustomerPhone { get; set; }
+        public String CustomerEmail { get; set; }
+
+        [Tab("Invoice")]
+        [Category("Related Invoices")]
+        [InvoiceEditor]
+        public List<InvoiceRow> InvoiceList { get; set; }
 
     }
 }
