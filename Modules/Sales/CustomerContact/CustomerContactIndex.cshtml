@@ -1,13 +1,13 @@
 ﻿@inject Serenity.ITextLocalizer Localizer
 @{
-    ViewData["Title"] = Localizer.Get("Db.Sales.CustumerContact.EntityPlural");
+    ViewData["Title"] = Localizer.Get("Db.Sales.CustomerContact.EntityPlural");
 }
 
 <div id="GridDiv"></div>
 
 <script type="text/javascript">
     jQuery(function () {
-        new InvoiceKu.Sales.CustumerContactGrid($('#GridDiv'), {}).init();
+        new InvoiceKu.Sales.CustomerContactGrid($('#GridDiv'), {}).init();
 
         Q.initFullHeightGridPage($('#GridDiv'));
     });

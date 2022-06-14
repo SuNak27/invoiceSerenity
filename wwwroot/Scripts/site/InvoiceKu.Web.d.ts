@@ -1978,20 +1978,104 @@ declare namespace InvoiceKu.Sales {
     }
 }
 declare namespace InvoiceKu.Sales {
-    interface CustomerForm {
+    class CustomerContactColumns {
+        static columnsKey: string;
+    }
+}
+declare namespace InvoiceKu.Sales {
+    interface CustomerContactForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
+        Description: Serenity.TextAreaEditor;
         Street: Serenity.StringEditor;
         City: Serenity.StringEditor;
         State: Serenity.StringEditor;
         ZipCode: Serenity.StringEditor;
         Phone: Serenity.StringEditor;
         Email: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+    }
+    class CustomerContactForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace InvoiceKu.Sales {
+    interface CustomerContactRow {
+        Id?: number;
+        CustomerId?: number;
+        Name?: string;
+        Description?: string;
+        Street?: string;
+        City?: string;
+        State?: string;
+        ZipCode?: string;
+        Phone?: string;
+        Email?: string;
+        TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
+    }
+    namespace CustomerContactRow {
+        const idProperty = "Id";
+        const nameProperty = "Name";
+        const localTextPrefix = "Sales.CustomerContact";
+        const lookupKey = "Sales.CustomerContact";
+        function getLookup(): Q.Lookup<CustomerContactRow>;
+        const deletePermission = "Sales:Customer";
+        const insertPermission = "Sales:Customer";
+        const readPermission = "Sales:Customer";
+        const updatePermission = "Sales:Customer";
+        const enum Fields {
+            Id = "Id",
+            CustomerId = "CustomerId",
+            Name = "Name",
+            Description = "Description",
+            Street = "Street",
+            City = "City",
+            State = "State",
+            ZipCode = "ZipCode",
+            Phone = "Phone",
+            Email = "Email",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate"
+        }
+    }
+}
+declare namespace InvoiceKu.Sales {
+    namespace CustomerContactService {
+        const baseUrl = "Sales/CustomerContact";
+        function Create(request: Serenity.SaveRequest<CustomerContactRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<CustomerContactRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustomerContactRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerContactRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create = "Sales/CustomerContact/Create",
+            Update = "Sales/CustomerContact/Update",
+            Delete = "Sales/CustomerContact/Delete",
+            Retrieve = "Sales/CustomerContact/Retrieve",
+            List = "Sales/CustomerContact/List"
+        }
+    }
+}
+declare namespace InvoiceKu.Sales {
+    interface CustomerForm {
+        Name: Serenity.StringEditor;
+        Description: Serenity.TextAreaEditor;
+        Street: Serenity.StringEditor;
+        City: Serenity.StringEditor;
+        State: Serenity.StringEditor;
+        ZipCode: Serenity.StringEditor;
+        Phone: Serenity.StringEditor;
+        Email: Serenity.StringEditor;
+        ContactList: CustomerContactEditor;
     }
     class CustomerForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -2010,11 +2094,13 @@ declare namespace InvoiceKu.Sales {
         ZipCode?: string;
         Phone?: string;
         Email?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        ContactList?: CustomerContactRow[];
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace CustomerRow {
         const idProperty = "Id";
@@ -2036,11 +2122,13 @@ declare namespace InvoiceKu.Sales {
             ZipCode = "ZipCode",
             Phone = "Phone",
             Email = "Email",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
+            ContactList = "ContactList",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -2058,96 +2146,6 @@ declare namespace InvoiceKu.Sales {
             Delete = "Sales/Customer/Delete",
             Retrieve = "Sales/Customer/Retrieve",
             List = "Sales/Customer/List"
-        }
-    }
-}
-declare namespace InvoiceKu.Sales {
-    class CustumerContactColumns {
-        static columnsKey: string;
-    }
-}
-declare namespace InvoiceKu.Sales {
-    interface CustumerContactForm {
-        CustomerId: Serenity.IntegerEditor;
-        Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        Street: Serenity.StringEditor;
-        City: Serenity.StringEditor;
-        State: Serenity.StringEditor;
-        ZipCode: Serenity.StringEditor;
-        Phone: Serenity.StringEditor;
-        Email: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
-    }
-    class CustumerContactForm extends Serenity.PrefixedContext {
-        static formKey: string;
-        private static init;
-        constructor(prefix: string);
-    }
-}
-declare namespace InvoiceKu.Sales {
-    interface CustumerContactRow {
-        Id?: number;
-        CustomerId?: number;
-        Name?: string;
-        Description?: string;
-        Street?: string;
-        City?: string;
-        State?: string;
-        ZipCode?: string;
-        Phone?: string;
-        Email?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
-        TenantId?: number;
-    }
-    namespace CustumerContactRow {
-        const idProperty = "Id";
-        const nameProperty = "Name";
-        const localTextPrefix = "Sales.CustumerContact";
-        const deletePermission = "Sales:Customer";
-        const insertPermission = "Sales:Customer";
-        const readPermission = "Sales:Customer";
-        const updatePermission = "Sales:Customer";
-        const enum Fields {
-            Id = "Id",
-            CustomerId = "CustomerId",
-            Name = "Name",
-            Description = "Description",
-            Street = "Street",
-            City = "City",
-            State = "State",
-            ZipCode = "ZipCode",
-            Phone = "Phone",
-            Email = "Email",
-            InsertDate = "InsertDate",
-            InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
-            UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
-        }
-    }
-}
-declare namespace InvoiceKu.Sales {
-    namespace CustumerContactService {
-        const baseUrl = "Sales/CustumerContact";
-        function Create(request: Serenity.SaveRequest<CustumerContactRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<CustumerContactRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustumerContactRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustumerContactRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        const enum Methods {
-            Create = "Sales/CustumerContact/Create",
-            Update = "Sales/CustumerContact/Update",
-            Delete = "Sales/CustumerContact/Delete",
-            Retrieve = "Sales/CustumerContact/Retrieve",
-            List = "Sales/CustumerContact/List"
         }
     }
 }
@@ -2519,12 +2517,7 @@ declare namespace InvoiceKu.Sales {
 declare namespace InvoiceKu.Sales {
     interface SalesChannelForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
     }
     class SalesChannelForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -2537,11 +2530,12 @@ declare namespace InvoiceKu.Sales {
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace SalesChannelRow {
         const idProperty = "Id";
@@ -2557,11 +2551,12 @@ declare namespace InvoiceKu.Sales {
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -3908,6 +3903,10 @@ declare namespace InvoiceKu.Sales {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: CustomerForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace InvoiceKu.Sales {
@@ -3919,30 +3918,36 @@ declare namespace InvoiceKu.Sales {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Sales {
-    class CustumerContactDialog extends Serenity.EntityDialog<CustumerContactRow, any> {
+    class CustomerContactDialog extends Serenity.Extensions.GridEditorDialog<CustomerContactRow> {
         protected getFormKey(): string;
-        protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected getDeletePermission(): string;
-        protected getInsertPermission(): string;
-        protected getUpdatePermission(): string;
-        protected form: CustumerContactForm;
+        protected form: CustomerContactForm;
     }
 }
 declare namespace InvoiceKu.Sales {
-    class CustumerContactGrid extends Serenity.EntityGrid<CustumerContactRow, any> {
+    class CustomerContactEditor extends Serenity.Extensions.GridEditorBase<CustomerContactRow> {
         protected getColumnsKey(): string;
-        protected getDialogType(): typeof CustumerContactDialog;
+        protected getDialogType(): typeof CustomerContactDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+    }
+}
+declare namespace InvoiceKu.Sales {
+    class CustomerContactGrid extends Serenity.EntityGrid<CustomerContactRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof CustomerContactDialog;
         protected getIdProperty(): string;
         protected getInsertPermission(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
     }
 }
 declare namespace InvoiceKu.Sales {
@@ -4077,6 +4082,10 @@ declare namespace InvoiceKu.Sales {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: SalesChannelForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace InvoiceKu.Sales {
@@ -4088,6 +4097,8 @@ declare namespace InvoiceKu.Sales {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Sales {

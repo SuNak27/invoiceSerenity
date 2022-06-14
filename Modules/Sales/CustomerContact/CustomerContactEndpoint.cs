@@ -7,56 +7,56 @@ using Serenity.Web;
 using System;
 using System.Data;
 using System.Globalization;
-using MyRow = InvoiceKu.Sales.CustumerContactRow;
+using MyRow = InvoiceKu.Sales.CustomerContactRow;
 
 namespace InvoiceKu.Sales.Endpoints
 {
-    [Route("Services/Sales/CustumerContact/[action]")]
+    [Route("Services/Sales/CustomerContact/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-    public class CustumerContactController : ServiceEndpoint
+    public class CustomerContactController : ServiceEndpoint
     {
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request,
-            [FromServices] ICustumerContactSaveHandler handler)
+            [FromServices] ICustomerContactSaveHandler handler)
         {
             return handler.Create(uow, request);
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request,
-            [FromServices] ICustumerContactSaveHandler handler)
+            [FromServices] ICustomerContactSaveHandler handler)
         {
             return handler.Update(uow, request);
         }
  
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request,
-            [FromServices] ICustumerContactDeleteHandler handler)
+            [FromServices] ICustomerContactDeleteHandler handler)
         {
             return handler.Delete(uow, request);
         }
 
         [HttpPost]
         public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request,
-            [FromServices] ICustumerContactRetrieveHandler handler)
+            [FromServices] ICustomerContactRetrieveHandler handler)
         {
             return handler.Retrieve(connection, request);
         }
 
         [HttpPost]
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request,
-            [FromServices] ICustumerContactListHandler handler)
+            [FromServices] ICustomerContactListHandler handler)
         {
             return handler.List(connection, request);
         }
 
         public FileContentResult ListExcel(IDbConnection connection, ListRequest request,
-            [FromServices] ICustumerContactListHandler handler,
+            [FromServices] ICustomerContactListHandler handler,
             [FromServices] IExcelExporter exporter)
         {
             var data = List(connection, request, handler).Entities;
-            var bytes = exporter.Export(data, typeof(Columns.CustumerContactColumns), request.ExportColumns);
-            return ExcelContentResult.Create(bytes, "CustumerContactList_" +
+            var bytes = exporter.Export(data, typeof(Columns.CustomerContactColumns), request.ExportColumns);
+            return ExcelContentResult.Create(bytes, "CustomerContactList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
         }
     }

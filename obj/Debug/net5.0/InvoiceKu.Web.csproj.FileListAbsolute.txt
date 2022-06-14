@@ -984,7 +984,6 @@ C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.We
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Purchase\VendorContact\VendorContactIndex.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Purchase\Vendor\VendorIndex.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Sales\Customer\CustomerIndex.cshtml.g.cs
-C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Sales\CustumerContact\CustumerContactIndex.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Sales\InvoiceDetail\InvoiceDetailIndex.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Sales\InvoicePayment\InvoicePaymentIndex.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Sales\Invoice\InvoiceIndex.cshtml.g.cs
@@ -1021,3 +1020,4 @@ C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.We
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Purchase\BillPayment\BillPaymentPrint.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Purchase\Bill\BillPrint.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Purchase\PurchaseOrder\PurchaseOrderPrint.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Sales\CustomerContact\CustomerContactIndex.cshtml.g.cs

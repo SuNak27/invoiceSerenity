@@ -42,7 +42,7 @@ namespace InvoiceKu.Sales
                     var tenant = UnitOfWork.Connection.ById<TenantRow>(Row.TenantId);
                     var request = new GetNextNumberRequest()
                     {
-                        Prefix = tenant.InvoicePaymentNumberUseDate.Value ? tenant.InvoicePaymentNumberPrefix + "/" + DateTime.Now.ToString("yyyyMMdd") : tenant.InvoicePaymentNumberPrefix,
+                        Prefix = tenant.InvoicePaymentNumberUseDate.Value ? tenant.InvoicePaymentNumberPrefix + "+" + DateTime.Now.ToString("yyyyMMdd") : tenant.InvoicePaymentNumberPrefix,
                         Length = tenant.InvoicePaymentNumberLength.Value
                     };
                     var respone = MultiTenantHelper.GetNextNumber(UnitOfWork.Connection, request, MyRow.Fields.Number, tenant.TenantId);

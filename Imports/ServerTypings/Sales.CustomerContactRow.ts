@@ -1,5 +1,5 @@
 ﻿namespace InvoiceKu.Sales {
-    export interface CustumerContactRow {
+    export interface CustomerContactRow {
         Id?: number;
         CustomerId?: number;
         Name?: string;
@@ -10,17 +10,23 @@
         ZipCode?: string;
         Phone?: string;
         Email?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
-    export namespace CustumerContactRow {
+    export namespace CustomerContactRow {
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
-        export const localTextPrefix = 'Sales.CustumerContact';
+        export const localTextPrefix = 'Sales.CustomerContact';
+        export const lookupKey = 'Sales.CustomerContact';
+
+        export function getLookup(): Q.Lookup<CustomerContactRow> {
+            return Q.getLookup<CustomerContactRow>('Sales.CustomerContact');
+        }
         export const deletePermission = 'Sales:Customer';
         export const insertPermission = 'Sales:Customer';
         export const readPermission = 'Sales:Customer';
@@ -37,11 +43,12 @@
             ZipCode = "ZipCode",
             Phone = "Phone",
             Email = "Email",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }

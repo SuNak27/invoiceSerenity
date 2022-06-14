@@ -9,11 +9,13 @@
         ZipCode?: string;
         Phone?: string;
         Email?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        ContactList?: CustomerContactRow[];
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace CustomerRow {
@@ -40,11 +42,13 @@
             ZipCode = "ZipCode",
             Phone = "Phone",
             Email = "Email",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
+            ContactList = "ContactList",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }

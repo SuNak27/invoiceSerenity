@@ -164,9 +164,9 @@ namespace MVC
                 public const string CustomerIndex = "~/Modules/Sales/Customer/CustomerIndex.cshtml";
             }
 
-            public static class CustumerContact
+            public static class CustomerContact
             {
-                public const string CustumerContactIndex = "~/Modules/Sales/CustumerContact/CustumerContactIndex.cshtml";
+                public const string CustomerContactIndex = "~/Modules/Sales/CustomerContact/CustomerContactIndex.cshtml";
             }
 
             public static class Invoice

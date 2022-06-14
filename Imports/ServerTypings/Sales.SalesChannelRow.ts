@@ -3,11 +3,12 @@
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
     export namespace SalesChannelRow {
@@ -28,11 +29,12 @@
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }

@@ -8,17 +8,13 @@ using System.IO;
 
 namespace InvoiceKu.Sales.Columns
 {
-    [ColumnsScript("Sales.Customer")]
-    [BasedOnRow(typeof(CustomerRow), CheckNames = true)]
-    public class CustomerColumns
+    [ColumnsScript("Sales.CustomerContact")]
+    [BasedOnRow(typeof(CustomerContactRow), CheckNames = true)]
+    public class CustomerContactColumns
     {
         [EditLink]
         [Width(200)]
         public String Name { get; set; }
-        [Width(200)]
-        public String City { get; set; }
-        [Width(200)]
-        public String Street { get; set; }
         [Width(200)]
         public String Email { get; set; }
         [Width(200)]
