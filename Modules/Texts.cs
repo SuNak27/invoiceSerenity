@@ -56,10 +56,10 @@ namespace InvoiceKu
 
                 public static class Login
                 {
-                    public static LocalText LoginToYourAccount = "Login to your account";
+                    public static LocalText FormTitle = "Developed by Kelompok 1";
                     public static LocalText SignInButton = "Sign In";
                     public static LocalText ForgotPassword = "Forgot password?";
-                    public static LocalText SignUpButton = "Don't have account yet? Sign up.";
+                    public static LocalText SignUpButton = "Register a new account";
                     public static LocalText RememberMe = "Remember Me";
                     public static LocalText OR = "OR";
                     public static LocalText FacebookButton = "Sign in using Facebook";
@@ -69,12 +69,12 @@ namespace InvoiceKu
                 public static class SignUp
                 {
                     public static LocalText ActivateEmailSubject = "Activate Your InvoiceKu Account";
-                    public static LocalText ActivationCompleteMessage = "Your account is now activated. " + 
+                    public static LocalText ActivationCompleteMessage = "Your account is now activated. " +
                         "Use the e-mail and password you used while signing up to login.";
                     public static LocalText FormInfo = "Enter your details to create a free account.";
-                    public static LocalText FormTitle = "Create a new account";
+                    public static LocalText FormTitle = "Sign up for InvoiceKu";
                     public static LocalText SubmitButton = "Sign Up";
-                    public static LocalText Success = "An e-mail with instructions to active your account is " + 
+                    public static LocalText Success = "An e-mail with instructions to active your account is " +
                         "sent to your e-mail address. Please check your e-mails.";
 
                     public static LocalText DisplayName = "Full Name";
@@ -92,7 +92,7 @@ namespace InvoiceKu
         public static class Navigation
         {
             public static LocalText LogoutLink = "Logout";
-            public static LocalText SiteTitle = "InvoiceKu";
+            public static LocalText SiteTitle = "InvoiceKu Website";
         }
 
         public static class Site

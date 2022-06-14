@@ -1002,7 +1002,6 @@ C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.We
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\Shared\_LayoutHead.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\Shared\_LayoutNoNavigation.cshtml.g.cs
-C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\Shared\_Sidebar.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\InvoiceKu.Web.RazorTargetAssemblyInfo.cache
@@ -1021,3 +1020,13 @@ C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.We
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Purchase\Bill\BillPrint.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Purchase\PurchaseOrder\PurchaseOrderPrint.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Sales\CustomerContact\CustomerContactIndex.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\AccountLogin.AdminLTE.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\AccountLogin.Jazz.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\Shared\LeftNavigation.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\Shared\_LayoutSlim.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Views\Shared\_LayoutSlimHead.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\ForgotPassword\AccountForgotPassword.AdminLTE.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\ForgotPassword\AccountForgotPassword.Jazz.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\ResetPassword\AccountResetPassword.AdminLTE.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\SignUp\AccountSignUp.Jazz.cshtml.g.cs

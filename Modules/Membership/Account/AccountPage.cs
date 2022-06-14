@@ -1,13 +1,14 @@
 ﻿using InvoiceKu.Administration;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using Serenity;
-using Serenity.Services;
-using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Serenity;
 using Serenity.Abstractions;
 using Serenity.Extensions;
+using Serenity.Services;
+using System;
 
 namespace InvoiceKu.Membership.Pages
 {
@@ -16,13 +17,16 @@ namespace InvoiceKu.Membership.Pages
     {
         public ITwoLevelCache Cache { get; }
         public ITextLocalizer Localizer { get; }
+        protected IOptions<DefaultOptions> DefaultOptions { get; }
 
-        public AccountController(ITwoLevelCache cache, ITextLocalizer localizer)
+        public AccountController(ITwoLevelCache cache, ITextLocalizer localizer, IOptions<DefaultOptions> defaultOptions)
         {
             Cache = cache ?? throw new ArgumentNullException(nameof(cache));
             Localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+            DefaultOptions = defaultOptions ?? throw new ArgumentNullException(nameof(defaultOptions));
         }
-        public static bool UseAdminLTELoginBox = false;
+        public static bool UseAdminLTELoginBox = true;
+        public static bool UseJazzLoginBox = true;
 
         [HttpGet]
         public ActionResult Login(string activated)
@@ -30,7 +34,15 @@ namespace InvoiceKu.Membership.Pages
             ViewData["Activated"] = activated;
             ViewData["HideLeftNavigation"] = true;
 
-            return View(MVC.Views.Membership.Account.AccountLogin);
+            if (UseJazzLoginBox)
+            {
+                return View(MVC.Views.Membership.Account.AccountLogin_Jazz);
+            }
+
+            if (UseAdminLTELoginBox)
+                return View(MVC.Views.Membership.Account.AccountLogin_AdminLTE);
+            else
+                return View(MVC.Views.Membership.Account.AccountLogin);
         }
 
         [HttpGet]
@@ -56,7 +68,7 @@ namespace InvoiceKu.Membership.Pages
                     throw new ArgumentNullException("username");
 
                 if (passwordValidator is null)
-                    throw new ArgumentNullException(nameof(passwordValidator));                
+                    throw new ArgumentNullException(nameof(passwordValidator));
 
                 if (userRetriever is null)
                     throw new ArgumentNullException(nameof(userRetriever));
@@ -77,7 +89,7 @@ namespace InvoiceKu.Membership.Pages
 
         private ActionResult Error(string message)
         {
-            return View(MVC.Views.Errors.ValidationError,message);
+            return View(MVC.Views.Errors.ValidationError, message);
         }
 
         public ActionResult Signout()

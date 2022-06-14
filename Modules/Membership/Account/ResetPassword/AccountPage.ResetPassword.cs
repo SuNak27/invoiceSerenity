@@ -1,13 +1,13 @@
 ﻿using InvoiceKu.Administration.Entities;
 using InvoiceKu.Administration.Repositories;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc;
 using Serenity;
 using Serenity.Data;
 using Serenity.Services;
 using Serenity.Web.Providers;
 using System;
 using System.IO;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.DataProtection;
 
 namespace InvoiceKu.Membership.Pages
 {
@@ -38,7 +38,7 @@ namespace InvoiceKu.Membership.Pages
             }
 
             if (sqlConnections is null)
-            	throw new ArgumentNullException(nameof(sqlConnections));
+                throw new ArgumentNullException(nameof(sqlConnections));
 
             using (var connection = sqlConnections.NewFor<UserRow>())
             {
@@ -47,7 +47,10 @@ namespace InvoiceKu.Membership.Pages
                     return Error(Texts.Validation.InvalidResetToken.ToString(Localizer));
             }
 
-            return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPassword, new ResetPasswordModel { Token = t });
+            if (UseAdminLTELoginBox)
+                return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPassword_AdminLTE, new ResetPasswordModel { Token = t });
+            else
+                return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPassword, new ResetPasswordModel { Token = t });
 
         }
 
@@ -78,7 +81,7 @@ namespace InvoiceKu.Membership.Pages
 
                 UserRow user;
                 if (sqlConnections is null)
-                	throw new ArgumentNullException(nameof(sqlConnections));
+                    throw new ArgumentNullException(nameof(sqlConnections));
 
                 using (var connection = sqlConnections.NewFor<UserRow>())
                 {

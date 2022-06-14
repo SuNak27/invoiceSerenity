@@ -1,7 +1,7 @@
 ﻿namespace InvoiceKu.Membership {
     export interface ChangePasswordForm {
-        OldPassword: Serenity.PasswordEditor;
         NewPassword: Serenity.PasswordEditor;
+        OldPassword: Serenity.PasswordEditor;
         ConfirmPassword: Serenity.PasswordEditor;
     }
 
@@ -19,8 +19,8 @@
                 var w0 = s.PasswordEditor;
 
                 Q.initFormType(ChangePasswordForm, [
-                    'OldPassword', w0,
                     'NewPassword', w0,
+                    'OldPassword', w0,
                     'ConfirmPassword', w0
                 ]);
             }

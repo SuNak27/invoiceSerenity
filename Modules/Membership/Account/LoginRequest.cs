@@ -7,9 +7,9 @@ namespace InvoiceKu.Membership
     [BasedOnRow(typeof(Administration.Entities.UserRow), CheckNames = true)]
     public class LoginRequest : ServiceRequest
     {
-        [Placeholder("user name")]
+        [Placeholder("username... (default is admin)")]
         public string Username { get; set; }
-        [PasswordEditor, Required(true), Placeholder("password")]
+        [PasswordEditor, Placeholder("password...(default is 1234567)"), Required(true)]
         public string Password { get; set; }
     }
 }

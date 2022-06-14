@@ -3,6 +3,7 @@ using SalesNav = InvoiceKu.Sales.Pages;
 using PurchaseNav = InvoiceKu.Purchase.Pages;
 using Merchandise = InvoiceKu.Merchandise.Pages;
 using SettingsNav = InvoiceKu.Settings.Pages;
+using Administration = InvoiceKu.Administration.Pages;
 
 [assembly: NavigationLink(1000, "Dashboard", url: "~/", permission: "", icon: "fa-tachometer")]
 

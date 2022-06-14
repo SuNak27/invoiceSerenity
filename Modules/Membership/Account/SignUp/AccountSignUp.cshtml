@@ -6,35 +6,33 @@
 }
 
 <script id="Template_Membership_SignUpPanel" type="text/template">
-    <h2 class="text-center p-4">
-        <img src="@Url.Content("~/Content/site/images/serenity-logo-w-128.png")" 
-            class="rounded-circle p-1" style="background-color: var(--s-sidebar-band-bg)"
-            width="50" height="50" /> InvoiceKu
-    </h2>
-
-    <div class="s-Panel p-4">
-
-        <h5 class="text-center my-4">@Texts.Forms.Membership.SignUp.FormTitle.ToString(Localizer)</h5>
-        <p class="text-center">@Texts.Forms.Membership.SignUp.FormInfo.ToString(Localizer)</p>
-
+    <div>
+        <h3 class="page-title">@Texts.Forms.Membership.SignUp.FormTitle.ToString(Localizer)</h3>
+        <p class="form-info">@Texts.Forms.Membership.SignUp.FormInfo.ToString(Localizer)</p>
         <form id="~_Form" action="">
-            <div id="~_PropertyGrid"></div>
-            <div class="px-field">
-                <button id="~_SubmitButton" type="submit" class="btn btn-primary my-4 w-100">
-                    @Texts.Forms.Membership.SignUp.SubmitButton.ToString(Localizer)
-                </button>
+            <div class="s-Form">
+                <div class="fieldset">
+                    <div id="~_PropertyGrid"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="buttons">
+                    <button id="~_SubmitButton" type="submit" class="btn btn-primary">
+    @Texts.Forms.Membership.SignUp.SubmitButton.ToString(Localizer)
+
+                    </button>
+                </div>
             </div>
         </form>
     </div>
 </script>
 
-<div class="s-full-page justify-content-center">
-    <div id="SignUpPanel"class="s-container-narrow s-Form flex-layout">
+<div class="page-content">
+    <div id="SignUpPanel">
     </div>
 </div>
 
 <script type="text/javascript">
-$(function() {
-    new InvoiceKu.Membership.SignUpPanel($('#SignUpPanel')).init();
-});
+    $(function () {
+        new InvoiceKu.Membership.SignUpPanel($('#SignUpPanel')).init();
+    });
 </script>

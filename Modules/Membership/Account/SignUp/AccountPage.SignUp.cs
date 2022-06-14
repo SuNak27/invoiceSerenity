@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using InvoiceKu.Administration;
+﻿using InvoiceKu.Administration;
 using InvoiceKu.Administration.Entities;
 using InvoiceKu.Administration.Repositories;
 using InvoiceKu.Common;
+using InvoiceKu.Settings;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Serenity;
 using Serenity.Data;
 using Serenity.Extensions;
@@ -17,27 +18,42 @@ namespace InvoiceKu.Membership.Pages
 {
     public partial class AccountController : Controller
     {
+
         [HttpGet]
         public ActionResult SignUp()
         {
-            return View(MVC.Views.Membership.Account.SignUp.AccountSignUp);
+            if (UseJazzLoginBox)
+            {
+                return View(MVC.Views.Membership.Account.SignUp.AccountSignUp_Jazz);
+            }
+
+            if (UseAdminLTELoginBox)
+                return View(MVC.Views.Membership.Account.SignUp.AccountSignUp_AdminLTE);
+            else
+                return View(MVC.Views.Membership.Account.SignUp.AccountSignUp);
         }
 
         [HttpPost, JsonRequest]
         public Result<ServiceResponse> SignUp(SignUpRequest request,
-        	[FromServices] IEmailSender emailSender,
-        	[FromServices] IOptions<EnvironmentSettings> options = null)
+            [FromServices] IEmailSender emailSender,
+            [FromServices] IOptions<EnvironmentSettings> options = null)
         {
             return this.UseConnection("Default", connection =>
             {
                 if (request is null)
                     throw new ArgumentNullException(nameof(request));
 
+                if (string.IsNullOrWhiteSpace(request.CompanyName))
+                    throw new ArgumentNullException(nameof(request.CompanyName));
+
                 if (string.IsNullOrWhiteSpace(request.Email))
                     throw new ArgumentNullException(nameof(request.Email));
+
                 if (string.IsNullOrEmpty(request.Password))
                     throw new ArgumentNullException(nameof(request.Password));
+
                 UserRepository.ValidatePassword(request.Password, Localizer);
+
                 if (string.IsNullOrWhiteSpace(request.DisplayName))
                     throw new ArgumentNullException(nameof(request.DisplayName));
 
@@ -50,6 +66,14 @@ namespace InvoiceKu.Membership.Pages
 
                 using (var uow = new UnitOfWork(connection))
                 {
+                    //register tenant by its company name
+                    var tenantId = MultiTenantHelper.CreateTenant(
+                            connection, 
+                            request.CompanyName,
+                            DefaultOptions.Value.Currency,
+                            DefaultOptions.Value.MaximumUser);
+
+                    //register user
                     string salt = null;
                     var hash = UserRepository.GenerateHash(request.Password, ref salt);
                     var displayName = request.DisplayName.TrimToEmpty();
@@ -68,8 +92,15 @@ namespace InvoiceKu.Membership.Pages
                         IsActive = 0,
                         InsertDate = DateTime.Now,
                         InsertUserId = 1,
-                        LastDirectoryUpdate = DateTime.Now
+                        LastDirectoryUpdate = DateTime.Now,
+                        TenantId = tenantId
                     });
+
+                    //default user permission for tenant admin
+                    MultiTenantHelper.GenerateDefaultTenantAdminPermission(userId, connection);
+
+                    //default business entity
+                    MultiTenantHelper.GenerateDefaultBusinessEntity(connection, tenantId);
 
                     byte[] bytes;
                     using (var ms = new MemoryStream())
@@ -100,7 +131,7 @@ namespace InvoiceKu.Membership.Pages
                         MVC.Views.Membership.Account.SignUp.AccountActivateEmail, emailModel);
 
                     if (emailSender is null)
-                    	throw new ArgumentNullException(nameof(emailSender));
+                        throw new ArgumentNullException(nameof(emailSender));
 
                     emailSender.Send(subject: emailSubject, body: emailBody, mailTo: email);
 

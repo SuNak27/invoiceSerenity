@@ -592,8 +592,8 @@ declare namespace InvoiceKu {
 }
 declare namespace InvoiceKu.Membership {
     interface ChangePasswordForm {
-        OldPassword: Serenity.PasswordEditor;
         NewPassword: Serenity.PasswordEditor;
+        OldPassword: Serenity.PasswordEditor;
         ConfirmPassword: Serenity.PasswordEditor;
     }
     class ChangePasswordForm extends Serenity.PrefixedContext {
@@ -604,14 +604,14 @@ declare namespace InvoiceKu.Membership {
 }
 declare namespace InvoiceKu.Membership {
     interface ChangePasswordRequest extends Serenity.ServiceRequest {
-        OldPassword?: string;
         NewPassword?: string;
+        OldPassword?: string;
         ConfirmPassword?: string;
     }
 }
 declare namespace InvoiceKu.Membership {
     interface ForgotPasswordForm {
-        Email: Serenity.EmailAddressEditor;
+        Email: Serenity.StringEditor;
     }
     class ForgotPasswordForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -661,9 +661,10 @@ declare namespace InvoiceKu.Membership {
 }
 declare namespace InvoiceKu.Membership {
     interface SignUpForm {
+        CompanyName: Serenity.StringEditor;
         DisplayName: Serenity.StringEditor;
-        Email: Serenity.EmailAddressEditor;
-        ConfirmEmail: Serenity.EmailAddressEditor;
+        Email: Serenity.StringEditor;
+        ConfirmEmail: Serenity.StringEditor;
         Password: Serenity.PasswordEditor;
         ConfirmPassword: Serenity.PasswordEditor;
     }
@@ -675,6 +676,7 @@ declare namespace InvoiceKu.Membership {
 }
 declare namespace InvoiceKu.Membership {
     interface SignUpRequest extends Serenity.ServiceRequest {
+        CompanyName?: string;
         DisplayName?: string;
         Email?: string;
         Password?: string;
@@ -3436,10 +3438,29 @@ declare namespace InvoiceKu.LanguageList {
 declare namespace InvoiceKu.ScriptInitialization {
 }
 declare namespace InvoiceKu.Common {
+    class LanguageSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery, currentLanguage: string);
+    }
+}
+declare namespace InvoiceKu.Common {
     class SidebarSearch extends Serenity.Widget<any> {
         private menuUL;
         constructor(input: JQuery, menuUL: JQuery);
         protected updateMatchFlags(text: string): void;
+    }
+}
+declare namespace InvoiceKu.Common {
+    class ThemeSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery);
+        protected getCurrentTheme(): string;
+    }
+}
+declare namespace InvoiceKu.Membership {
+    class JazzLoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
+        protected getFormKey(): string;
+        constructor(container: JQuery);
+        protected redirectToReturnUrl(): void;
+        protected getTemplate(): string;
     }
 }
 declare namespace InvoiceKu.Membership {
@@ -3455,7 +3476,6 @@ declare namespace InvoiceKu.Membership {
         protected getFormKey(): string;
         private form;
         constructor(container: JQuery);
-        getTemplate(): string;
     }
 }
 declare namespace InvoiceKu.Membership {
@@ -3466,7 +3486,21 @@ declare namespace InvoiceKu.Membership {
     }
 }
 declare namespace InvoiceKu.Membership {
+    class JazzForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace InvoiceKu.Membership {
     class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace InvoiceKu.Membership {
+    class JazzSignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
         protected getFormKey(): string;
         private form;
         constructor(container: JQuery);

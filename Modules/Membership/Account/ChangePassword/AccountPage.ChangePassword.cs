@@ -1,12 +1,12 @@
-﻿using InvoiceKu.Administration.Entities;
+﻿using InvoiceKu.Administration;
+using InvoiceKu.Administration.Entities;
 using InvoiceKu.Administration.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Serenity;
 using Serenity.Data;
 using Serenity.Services;
 using Serenity.Web;
 using System;
-using Microsoft.AspNetCore.Mvc;
-using InvoiceKu.Administration;
 
 namespace InvoiceKu.Membership.Pages
 {
@@ -19,7 +19,7 @@ namespace InvoiceKu.Membership.Pages
         }
 
         [HttpPost, JsonRequest, ServiceAuthorize]
-        public Result<ServiceResponse> ChangePassword(ChangePasswordRequest request, 
+        public Result<ServiceResponse> ChangePassword(ChangePasswordRequest request,
             [FromServices] IUserPasswordValidator passwordValidator)
         {
             return this.InTransaction("Default", uow =>
@@ -31,7 +31,7 @@ namespace InvoiceKu.Membership.Pages
                     throw new ArgumentNullException("oldPassword");
 
                 if (passwordValidator is null)
-                	throw new ArgumentNullException(nameof(passwordValidator));
+                    throw new ArgumentNullException(nameof(passwordValidator));
 
                 var username = User.Identity?.Name;
 

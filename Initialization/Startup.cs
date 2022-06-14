@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using InvoiceKu.AppServices;
+using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -11,13 +13,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
-using InvoiceKu.AppServices;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
-using Serenity.Navigation;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
@@ -42,7 +42,7 @@ namespace InvoiceKu
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ITypeSource>(new DefaultTypeSource(new[] 
+            services.AddSingleton<ITypeSource>(new DefaultTypeSource(new[]
             {
                 typeof(LocalTextRegistry).Assembly,
                 typeof(ISqlConnections).Assembly,
@@ -51,12 +51,6 @@ namespace InvoiceKu
                 typeof(IDynamicScriptManager).Assembly,
                 typeof(Startup).Assembly,
                 typeof(Serenity.Extensions.EnvironmentSettings).Assembly,
-                //<if:Northwind>
-                // typeof(Serenity.Demo.Northwind.CustomerController).Assembly,
-                //</if:Northwind>
-                //<if:BasicSamples>
-                // typeof(Serenity.Demo.BasicSamples.BasicSamplesController).Assembly,
-                //</if:BasicSamples>
             }));
 
             services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));
@@ -64,10 +58,12 @@ namespace InvoiceKu
             services.Configure<LocalTextPackages>(Configuration.GetSection(LocalTextPackages.SectionKey));
             services.Configure<ScriptBundlingOptions>(Configuration.GetSection(ScriptBundlingOptions.SectionKey));
             services.Configure<UploadSettings>(Configuration.GetSection(UploadSettings.SectionKey));
+            services.Configure<DemoOption>(Configuration.GetSection(DemoOption.SectionKey));
+            services.Configure<DefaultOptions>(Configuration.GetSection(DefaultOptions.SectionKey));
 
             services.Configure<Serenity.Extensions.EnvironmentSettings>(Configuration.GetSection(Serenity.Extensions.EnvironmentSettings.SectionKey));
 
-            
+
             var dataProtectionKeysFolder = Configuration?["DataProtectionKeysFolder"];
             if (!string.IsNullOrEmpty(dataProtectionKeysFolder))
             {
@@ -78,7 +74,7 @@ namespace InvoiceKu
             }
 
 
-            services.AddAntiforgery(options => 
+            services.AddAntiforgery(options =>
             {
                 options.HeaderName = "X-CSRF-TOKEN";
             });
@@ -103,7 +99,7 @@ namespace InvoiceKu
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
-            
+
             if (HostEnvironment.IsDevelopment())
                 builder.AddRazorRuntimeCompilation();
 
@@ -143,7 +139,6 @@ namespace InvoiceKu
             services.AddSingleton<IUserAccessor, Administration.UserAccessor>();
             services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();
             services.AddSingleton<IPermissionService, Administration.PermissionService>();
-            services.AddSingleton<INavigationModelFactory, Common.NavigationModelFactory>();
         }
 
         public static void InitializeLocalTexts(IServiceProvider services)
@@ -159,16 +154,14 @@ namespace InvoiceKu
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
         {
             RowFieldsProvider.SetDefaultFrom(app.ApplicationServices);
             InitializeLocalTexts(app.ApplicationServices);
 
-            var reqLocOpt = new RequestLocalizationOptions
-            {
-                SupportedUICultures = UserCultureProvider.SupportedCultures,
-                SupportedCultures = UserCultureProvider.SupportedCultures
-            };
+            var reqLocOpt = new RequestLocalizationOptions();
+            reqLocOpt.SupportedUICultures = UserCultureProvider.SupportedCultures;
+            reqLocOpt.SupportedCultures = UserCultureProvider.SupportedCultures;
             reqLocOpt.RequestCultureProviders.Clear();
             reqLocOpt.RequestCultureProviders.Add(new UserCultureProvider());
             app.UseRequestLocalization(reqLocOpt);
@@ -191,7 +184,8 @@ namespace InvoiceKu
 
             app.UseDynamicScripts();
 
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapControllers();
             });
 

@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.DataProtection;
+﻿using InvoiceKu.Administration.Entities;
+using InvoiceKu.Common;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using InvoiceKu.Administration.Entities;
-using InvoiceKu.Common;
 using Serenity;
 using Serenity.Data;
 using Serenity.Extensions;
@@ -18,7 +18,15 @@ namespace InvoiceKu.Membership.Pages
         [HttpGet]
         public ActionResult ForgotPassword()
         {
-            return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword);
+            if (UseJazzLoginBox)
+            {
+                return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword_Jazz);
+            }
+
+            if (UseAdminLTELoginBox)
+                return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword_AdminLTE);
+            else
+                return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword);
         }
 
         [HttpPost, JsonRequest]
@@ -67,7 +75,7 @@ namespace InvoiceKu.Membership.Pages
                     MVC.Views.Membership.Account.ResetPassword.AccountResetPasswordEmail, emailModel);
 
                 if (emailSender is null)
-                	throw new ArgumentNullException(nameof(emailSender));
+                    throw new ArgumentNullException(nameof(emailSender));
 
                 emailSender.Send(subject: emailSubject, body: emailBody, mailTo: user.Email);
 

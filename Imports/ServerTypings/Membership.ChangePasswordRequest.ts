@@ -1,8 +1,7 @@
 ﻿namespace InvoiceKu.Membership {
     export interface ChangePasswordRequest extends Serenity.ServiceRequest {
-        OldPassword?: string;
         NewPassword?: string;
+        OldPassword?: string;
         ConfirmPassword?: string;
     }
 }
-
