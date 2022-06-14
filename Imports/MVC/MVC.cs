@@ -108,6 +108,7 @@ namespace MVC
             public static class Product
             {
                 public const string ProductIndex = "~/Modules/Merchandise/Product/ProductIndex.cshtml";
+                public const string ProductPrint = "~/Modules/Merchandise/Product/ProductPrint.cshtml";
             }
 
             public static class Size

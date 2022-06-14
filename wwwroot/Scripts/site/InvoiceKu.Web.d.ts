@@ -690,12 +690,7 @@ declare namespace InvoiceKu.Merchandise {
 declare namespace InvoiceKu.Merchandise {
     interface BrandForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
     }
     class BrandForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -708,16 +703,19 @@ declare namespace InvoiceKu.Merchandise {
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace BrandRow {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Merchandise.Brand";
+        const lookupKey = "Merchandise.Brand";
+        function getLookup(): Q.Lookup<BrandRow>;
         const deletePermission = "Merchandise:Brand";
         const insertPermission = "Merchandise:Brand";
         const readPermission = "Merchandise:Brand";
@@ -726,11 +724,12 @@ declare namespace InvoiceKu.Merchandise {
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -759,12 +758,7 @@ declare namespace InvoiceKu.Merchandise {
 declare namespace InvoiceKu.Merchandise {
     interface CategoryForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
     }
     class CategoryForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -777,16 +771,19 @@ declare namespace InvoiceKu.Merchandise {
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace CategoryRow {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Merchandise.Category";
+        const lookupKey = "Merchandise.Category";
+        function getLookup(): Q.Lookup<CategoryRow>;
         const deletePermission = "Merchandise:Category";
         const insertPermission = "Merchandise:Category";
         const readPermission = "Merchandise:Category";
@@ -795,11 +792,12 @@ declare namespace InvoiceKu.Merchandise {
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -828,12 +826,7 @@ declare namespace InvoiceKu.Merchandise {
 declare namespace InvoiceKu.Merchandise {
     interface ColourForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
     }
     class ColourForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -846,16 +839,19 @@ declare namespace InvoiceKu.Merchandise {
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace ColourRow {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Merchandise.Colour";
+        const lookupKey = "Merchandise.Colour";
+        function getLookup(): Q.Lookup<ColourRow>;
         const deletePermission = "Merchandise:Colour";
         const insertPermission = "Merchandise:Colour";
         const readPermission = "Merchandise:Colour";
@@ -864,11 +860,12 @@ declare namespace InvoiceKu.Merchandise {
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -897,12 +894,7 @@ declare namespace InvoiceKu.Merchandise {
 declare namespace InvoiceKu.Merchandise {
     interface FlavourForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
     }
     class FlavourForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -915,16 +907,19 @@ declare namespace InvoiceKu.Merchandise {
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace FlavourRow {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Merchandise.Flavour";
+        const lookupKey = "Merchandise.Flavour";
+        function getLookup(): Q.Lookup<FlavourRow>;
         const deletePermission = "Merchandise:Flavour";
         const insertPermission = "Merchandise:Flavour";
         const readPermission = "Merchandise:Flavour";
@@ -933,11 +928,12 @@ declare namespace InvoiceKu.Merchandise {
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -964,27 +960,32 @@ declare namespace InvoiceKu.Merchandise {
     }
 }
 declare namespace InvoiceKu.Merchandise {
+    interface ProductCurrencyRequest extends Serenity.ServiceRequest {
+    }
+}
+declare namespace InvoiceKu.Merchandise {
+    interface ProductCurrencyResponse extends Serenity.ServiceResponse {
+        Currency?: string;
+    }
+}
+declare namespace InvoiceKu.Merchandise {
     interface ProductForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        Picture: Serenity.StringEditor;
         InternalCode: Serenity.StringEditor;
         Barcode: Serenity.StringEditor;
-        UomId: Serenity.IntegerEditor;
-        BrandId: Serenity.IntegerEditor;
-        CategoryId: Serenity.IntegerEditor;
-        SizeId: Serenity.IntegerEditor;
-        ColourId: Serenity.IntegerEditor;
-        FlavourId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
+        UomId: Serenity.LookupEditor;
+        Picture: Serenity.ImageUploadEditor;
+        BrandId: Serenity.LookupEditor;
+        CategoryId: Serenity.LookupEditor;
+        SizeId: Serenity.LookupEditor;
+        ColourId: Serenity.LookupEditor;
+        FlavourId: Serenity.LookupEditor;
+        CurrencyName: Serenity.StringEditor;
         PurchasePrice: Serenity.DecimalEditor;
+        PurchaseTaxId: Serenity.LookupEditor;
         SalesPrice: Serenity.DecimalEditor;
-        PurchaseTaxId: Serenity.IntegerEditor;
-        SalesTaxId: Serenity.IntegerEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        SalesTaxId: Serenity.LookupEditor;
     }
     class ProductForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -1010,11 +1011,21 @@ declare namespace InvoiceKu.Merchandise {
         SalesPrice?: number;
         PurchaseTaxId?: number;
         SalesTaxId?: number;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
+        UomName?: string;
+        BrandName?: string;
+        CategoryName?: string;
+        SizeName?: string;
+        ColourName?: string;
+        FlavourName?: string;
+        PurchaseTaxName?: string;
+        SalesTaxName?: string;
+        CurrencyName?: string;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace ProductRow {
         const idProperty = "Id";
@@ -1043,11 +1054,21 @@ declare namespace InvoiceKu.Merchandise {
             SalesPrice = "SalesPrice",
             PurchaseTaxId = "PurchaseTaxId",
             SalesTaxId = "SalesTaxId",
-            InsertDate = "InsertDate",
+            UomName = "UomName",
+            BrandName = "BrandName",
+            CategoryName = "CategoryName",
+            SizeName = "SizeName",
+            ColourName = "ColourName",
+            FlavourName = "FlavourName",
+            PurchaseTaxName = "PurchaseTaxName",
+            SalesTaxName = "SalesTaxName",
+            CurrencyName = "CurrencyName",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -1059,12 +1080,14 @@ declare namespace InvoiceKu.Merchandise {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Currency(request: ProductCurrencyRequest, onSuccess?: (response: ProductCurrencyResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         const enum Methods {
             Create = "Merchandise/Product/Create",
             Update = "Merchandise/Product/Update",
             Delete = "Merchandise/Product/Delete",
             Retrieve = "Merchandise/Product/Retrieve",
-            List = "Merchandise/Product/List"
+            List = "Merchandise/Product/List",
+            Currency = "Merchandise/Product/Currency"
         }
     }
 }
@@ -1076,12 +1099,7 @@ declare namespace InvoiceKu.Merchandise {
 declare namespace InvoiceKu.Merchandise {
     interface SizeForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
     }
     class SizeForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -1094,16 +1112,19 @@ declare namespace InvoiceKu.Merchandise {
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace SizeRow {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Merchandise.Size";
+        const lookupKey = "Merchandise.Size";
+        function getLookup(): Q.Lookup<SizeRow>;
         const deletePermission = "Merchandise:Size";
         const insertPermission = "Merchandise:Size";
         const readPermission = "Merchandise:Size";
@@ -1112,11 +1133,12 @@ declare namespace InvoiceKu.Merchandise {
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -1145,12 +1167,7 @@ declare namespace InvoiceKu.Merchandise {
 declare namespace InvoiceKu.Merchandise {
     interface UomForm {
         Name: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        InsertDate: Serenity.DateEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        TenantId: Serenity.IntegerEditor;
+        Description: Serenity.TextAreaEditor;
     }
     class UomForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -1163,16 +1180,19 @@ declare namespace InvoiceKu.Merchandise {
         Id?: number;
         Name?: string;
         Description?: string;
-        InsertDate?: string;
-        InsertUserId?: number;
-        UpdateDate?: string;
-        UpdateUserId?: number;
         TenantId?: number;
+        TenantName?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace UomRow {
         const idProperty = "Id";
         const nameProperty = "Name";
         const localTextPrefix = "Merchandise.Uom";
+        const lookupKey = "Merchandise.Uom";
+        function getLookup(): Q.Lookup<UomRow>;
         const deletePermission = "Merchandise:Uom";
         const insertPermission = "Merchandise:Uom";
         const readPermission = "Merchandise:Uom";
@@ -1181,11 +1201,12 @@ declare namespace InvoiceKu.Merchandise {
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            InsertDate = "InsertDate",
+            TenantId = "TenantId",
+            TenantName = "TenantName",
             InsertUserId = "InsertUserId",
-            UpdateDate = "UpdateDate",
+            InsertDate = "InsertDate",
             UpdateUserId = "UpdateUserId",
-            TenantId = "TenantId"
+            UpdateDate = "UpdateDate"
         }
     }
 }
@@ -3524,6 +3545,10 @@ declare namespace InvoiceKu.Merchandise {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: BrandForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3535,6 +3560,8 @@ declare namespace InvoiceKu.Merchandise {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3548,6 +3575,10 @@ declare namespace InvoiceKu.Merchandise {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: CategoryForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3559,6 +3590,8 @@ declare namespace InvoiceKu.Merchandise {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3572,6 +3605,10 @@ declare namespace InvoiceKu.Merchandise {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: ColourForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3583,6 +3620,8 @@ declare namespace InvoiceKu.Merchandise {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3596,6 +3635,10 @@ declare namespace InvoiceKu.Merchandise {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: FlavourForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3607,6 +3650,8 @@ declare namespace InvoiceKu.Merchandise {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3620,6 +3665,12 @@ declare namespace InvoiceKu.Merchandise {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: ProductForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
+        protected getToolbarButtons(): Serenity.ToolButton[];
+        protected afterLoadEntity(): void;
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3631,6 +3682,9 @@ declare namespace InvoiceKu.Merchandise {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3644,6 +3698,10 @@ declare namespace InvoiceKu.Merchandise {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: SizeForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3655,6 +3713,8 @@ declare namespace InvoiceKu.Merchandise {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3668,6 +3728,10 @@ declare namespace InvoiceKu.Merchandise {
         protected getInsertPermission(): string;
         protected getUpdatePermission(): string;
         protected form: UomForm;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
     }
 }
 declare namespace InvoiceKu.Merchandise {
@@ -3679,6 +3743,8 @@ declare namespace InvoiceKu.Merchandise {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace InvoiceKu.Purchase {

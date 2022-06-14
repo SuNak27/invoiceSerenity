@@ -13,6 +13,28 @@ namespace InvoiceKu.Merchandise {
         protected getUpdatePermission() { return UomRow.updatePermission; }
 
         protected form = new UomForm(this.idPrefix);
+        private loadedState: string;
+
+        constructor() {
+            super();
+
+            InvoiceKu.DialogUtils.pendingChangesConfirmation(this.element, () => this.getSaveState() != this.loadedState);
+        }
+
+
+        getSaveState() {
+            try {
+                return $.toJSON(this.getSaveEntity());
+            }
+            catch (e) {
+                return null;
+            }
+        }
+
+        loadResponse(data) {
+            super.loadResponse(data);
+            this.loadedState = this.getSaveState();
+        }
 
     }
 }

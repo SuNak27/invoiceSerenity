@@ -1030,3 +1030,4 @@ C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.We
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\ResetPassword\AccountResetPassword.AdminLTE.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml.g.cs
 C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Membership\Account\SignUp\AccountSignUp.Jazz.cshtml.g.cs
+C:\Users\Alfad\OneDrive\Documents\KaryawanInvoice\project\InvoiceKu\InvoiceKu.Web\obj\Debug\net5.0\Razor\Modules\Merchandise\Product\ProductPrint.cshtml.g.cs
