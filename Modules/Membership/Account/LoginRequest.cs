@@ -3,13 +3,13 @@ using Serenity.Services;
 
 namespace InvoiceKu.Membership
 {
-    [FormScript("Membership.Login")]
-    [BasedOnRow(typeof(Administration.Entities.UserRow), CheckNames = true)]
-    public class LoginRequest : ServiceRequest
-    {
-        [Placeholder("username... (default is admin)")]
-        public string Username { get; set; }
-        [PasswordEditor, Placeholder("password...(default is 1234567)"), Required(true)]
-        public string Password { get; set; }
-    }
+  [FormScript("Membership.Login")]
+  [BasedOnRow(typeof(Administration.Entities.UserRow), CheckNames = true)]
+  public class LoginRequest : ServiceRequest
+  {
+    [Placeholder("Username")]
+    public string Username { get; set; }
+    [PasswordEditor, Placeholder("******"), Required(true)]
+    public string Password { get; set; }
+  }
 }
